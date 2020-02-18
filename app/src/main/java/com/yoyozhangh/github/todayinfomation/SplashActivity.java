@@ -1,8 +1,10 @@
 package com.yoyozhangh.github.todayinfomation;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -15,7 +17,8 @@ public class SplashActivity extends AppCompatActivity {
 
 
     private VideoView mVideoView;
-    private TextView mTextView;
+    private TextView mTVTimer;
+    private CustomCountDownTimer mTimer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +26,13 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.splash);
 
         mVideoView = (VideoView) findViewById(R.id.vv_play);
-        mTextView = (TextView) findViewById(R.id.skip);
+        mTVTimer = (TextView) findViewById(R.id.skip);
+        mTVTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            }
+        });
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash2));
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -39,17 +48,24 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        CustomCountDownTimer customCountDownTimer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+        mTimer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
-                mTextView.setText(time + " 秒");
+                mTVTimer.setText(time + " 秒");
             }
 
             @Override
             public void onFinsh() {
-                mTextView.setText("跳过");
+                mTVTimer.setText("跳过");
             }
         });
-        customCountDownTimer.start();
+        mTimer.start();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTimer.cancle();
     }
 }

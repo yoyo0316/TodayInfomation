@@ -26,10 +26,11 @@ public class CustomCountDownTimer implements Runnable {
                 countDownHandler.onTicker(countDownTme);
             }
             if (countDownTme == 0) {
+                cancle();
                 if (countDownHandler != null) {
                     countDownHandler.onFinsh();
                 }
-            }else {
+            } else {
                 countDownTme = countDownTme - 1;
                 handler.postDelayed(this, 1000);
             }
