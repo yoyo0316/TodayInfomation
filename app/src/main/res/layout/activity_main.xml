@@ -27,7 +27,7 @@
         android:background="@color/color_black_30">
 
         <RadioGroup
-            android:id="@+id/rg_main_group"
+            android:id="@+id/rg_main_group_top"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -51,6 +51,34 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/str_main_hangzhou"
+                android:textColor="@drawable/select_main_top_text_color" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rg_main_group_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_main_beijing"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/str_main_beijing"
+                android:textColor="@drawable/select_main_top_text_color" />
+
+            <RadioButton
+                android:id="@+id/rb_main_shenzhen"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/str_main_shenzhen"
                 android:textColor="@drawable/select_main_top_text_color" />
         </RadioGroup>
     </FrameLayout>
