@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
+        setContentView(R.layout.activity_splash);
 
         mVideoView = (VideoView) findViewById(R.id.vv_play);
         mTVTimer = (TextView) findViewById(R.id.skip);
