@@ -1,28 +1,34 @@
 package com.yoyozhangh.github.todayinfomation;
 
+import android.util.Log;
+
+import com.yoyozhangh.github.todayinfomation.mvp.base.BaseMvpPresenter;
+
 /**
  * Presenter 层
  */
-public class SplashTimerPresenter {
-    private final SplashActivity mActivity;
+public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter {
     private CustomCountDownTimer timer;
 
-    public SplashTimerPresenter(SplashActivity activity) {
-        this.mActivity = activity;
+    private final static String TAG = "SplashTimerPresenter";
+
+    public SplashTimerPresenter(ISplashActivityContract.Iview view) {
+        super(view);
     }
+
 
     public void initTimer() {
 
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
-                mActivity.setTvTimer(time + " 秒");
+                getView().setTvTimer(time + " 秒");
 //                mTVTimer.setText(time + " 秒");
             }
 
             @Override
             public void onFinsh() {
-                mActivity.setTvTimer("跳过");
+                getView().setTvTimer("跳过");
 //                mTVTimer.setText("跳过");
             }
         });
@@ -32,4 +38,25 @@ public class SplashTimerPresenter {
     public void cancle() {
         timer.cancle();
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancle();
+        Log.e(TAG, "onDestroy: ");
+    }
+
+
+    /**
+     * 防止空指针
+     *
+     * @return
+     */
+    @Override
+    protected ISplashActivityContract.Iview getEmptyView() {
+        return ISplashActivityContract.emptyView;
+    }
+
+
 }

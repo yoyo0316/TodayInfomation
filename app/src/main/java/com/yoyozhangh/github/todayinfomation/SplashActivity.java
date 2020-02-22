@@ -14,14 +14,14 @@ import java.io.File;
 import butterknife.BindView;
 
 @ViewInject(mainlayoutid = R.layout.activity_splash)
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements ISplashActivityContract.Iview {
 
 
     @BindView(R.id.vv_play)
     FullScreenVideoView mVideoView;
     @BindView(R.id.skip)
     TextView mTVTimer;
-    SplashTimerPresenter mTimerPresenter;
+    ISplashActivityContract.IPresenter mTimerPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,20 +40,6 @@ public class SplashActivity extends BaseActivity {
         mTimerPresenter.initTimer();
     }
 
-    private void initTimer() {
-//        mTimer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
-//            @Override
-//            public void onTicker(int time) {
-//                mTVTimer.setText(time + " 秒");
-//            }
-//
-//            @Override
-//            public void onFinsh() {
-//                mTVTimer.setText("跳过");
-//            }
-//        });
-//        mTimer.start();
-    }
 
     private void initVideo() {
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash2));
@@ -79,17 +65,13 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         });
     }
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mTimerPresenter.cancle();
-    }
-
     public void setTvTimer(String s) {
         mTVTimer.setText(s);
     }
