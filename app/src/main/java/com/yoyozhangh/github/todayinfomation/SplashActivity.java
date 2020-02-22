@@ -27,12 +27,13 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void afterBindView() {
         initTimerPresenter();
         initListener();
         initVideo();
-
-        //把初始化 Timer 及相关内容抽出到Presenter层中
-//        initTimer();
     }
 
     private void initTimerPresenter() {
