@@ -6,34 +6,61 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.VideoView;
+
+import androidx.annotation.Nullable;
 
 import java.io.File;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
 
-public class SplashActivity extends AppCompatActivity {
+@ViewInject(mainlayoutid = R.layout.activity_splash)
+public class SplashActivity extends BaseActivity {
 
 
-    private VideoView mVideoView;
-    private TextView mTVTimer;
-    private CustomCountDownTimer mTimer;
+    @BindView(R.id.vv_play)
+    FullScreenVideoView mVideoView;
+    @BindView(R.id.skip)
+    TextView mTVTimer;
+    SplashTimerPresenter mTimerPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
 
-        mVideoView = (VideoView) findViewById(R.id.vv_play);
-        mTVTimer = (TextView) findViewById(R.id.skip);
-        mTVTimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
-            }
-        });
+        initTimerPresenter();
+        initListener();
+        initVideo();
+
+        //把初始化 Timer 及相关内容抽出到Presenter层中
+//        initTimer();
+    }
+
+    private void initTimerPresenter() {
+        mTimerPresenter = new SplashTimerPresenter(this);
+        mTimerPresenter.initTimer();
+    }
+
+    private void initTimer() {
+//        mTimer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+//            @Override
+//            public void onTicker(int time) {
+//                mTVTimer.setText(time + " 秒");
+//            }
+//
+//            @Override
+//            public void onFinsh() {
+//                mTVTimer.setText("跳过");
+//            }
+//        });
+//        mTimer.start();
+    }
+
+    private void initVideo() {
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash2));
+    }
+
+    private void initListener() {
+
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
@@ -48,24 +75,22 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        mTimer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
+        mTVTimer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTicker(int time) {
-                mTVTimer.setText(time + " 秒");
-            }
-
-            @Override
-            public void onFinsh() {
-                mTVTimer.setText("跳过");
+            public void onClick(View view) {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
         });
-        mTimer.start();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mTimer.cancle();
+        mTimerPresenter.cancle();
+    }
+
+    public void setTvTimer(String s) {
+        mTVTimer.setText(s);
     }
 }
