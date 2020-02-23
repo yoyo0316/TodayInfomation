@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.splash;
 
 import android.content.Context;
 import android.util.AttributeSet;

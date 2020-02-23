@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.splash;
 
 import android.util.Log;
 

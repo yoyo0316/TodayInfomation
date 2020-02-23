@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.splash;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
+import com.yoyozhangh.github.todayinfomation.main.MainActivity;
+import com.yoyozhangh.github.todayinfomation.R;
+import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 
 import java.io.File;
 

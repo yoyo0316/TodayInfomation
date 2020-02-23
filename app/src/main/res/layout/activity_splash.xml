@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yoyozhangh.github.todayinfomation.FullScreenVideoView
+    <com.yoyozhangh.github.todayinfomation.splash.FullScreenVideoView
         android:id="@+id/vv_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

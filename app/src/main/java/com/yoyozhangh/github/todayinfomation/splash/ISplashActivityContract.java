@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.splash;
 
 import com.yoyozhangh.github.todayinfomation.mvp.ILifeCircle;
 import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;

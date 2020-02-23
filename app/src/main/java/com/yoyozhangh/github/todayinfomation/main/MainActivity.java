@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.main;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,14 +8,21 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.yoyozhangh.github.todayinfomation.R;
+import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
+import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 
 @ViewInject(mainlayoutid = R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainActivityContract.Iview {
+
+    IMainActivityContract.IPresenter  mPresenter = new MainActivityPresenter(this);
 
     @BindView(R.id.fac_main_bottom)
     FloatingActionButton facMainBottom;
@@ -25,8 +32,8 @@ public class MainActivity extends BaseActivity {
     RadioButton rbMainHangzhou;
     @BindView(R.id.fl_main_bottom)
     FrameLayout flMainBottom;
-    @BindView(R.id.fl_main_top)
-    FrameLayout flMainTop;
+    @BindView(R.id.fl_main_content)
+    FrameLayout flMainContent;
     @BindView(R.id.rg_main_group_top)
     RadioGroup rgMainGroupTop;
     @BindView(R.id.rb_main_beijing)
@@ -40,7 +47,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void afterBindView() {
+        initFragment();
         changeAnime(rgMainGroupBottom,rgMainGroupTop);
+    }
+
+    private void initFragment() {
+        mPresenter.initHomeFragment();
     }
 
     @OnClick(R.id.fac_main_bottom)
@@ -71,4 +88,20 @@ public class MainActivity extends BaseActivity {
         show.startAnimation(animation1);
         show.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void showFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().show(fragment);
+    }
+
+    @Override
+    public void addFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_main_content,fragment);
+    }
+
+    @Override
+    public void hideFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().hide(fragment);
+    }
+
 }

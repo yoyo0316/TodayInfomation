@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation;
+package com.yoyozhangh.github.todayinfomation.base;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
