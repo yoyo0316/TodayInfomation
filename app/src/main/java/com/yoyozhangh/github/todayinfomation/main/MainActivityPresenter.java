@@ -16,6 +16,8 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
 
     private Fragment[] mFragments = new Fragment[4];
     private int mCurrentCheckId;
+    private int mTopPosition;
+    private int mBottomPosition;
 
     public MainActivityPresenter(IMainActivityContract.Iview view) {
         super(view);
@@ -33,8 +35,19 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         replaceFragment(mCurrentFragmentIndex);
     }
 
+    @Override
+    public int getCurrentCheckedId() {
+        return mCurrentCheckId;
+    }
+
+    @Override
+    public int getCurrentCheckedIndex() {
+        return mCurrentFragmentIndex;
+    }
+
+    @Override
     // 切换fragment 的方法
-    private void replaceFragment(int mCurrentFragmentIndex) {
+    public void replaceFragment(int mCurrentFragmentIndex) {
         for (int i = 0; i < mFragments.length; i++) {
             if (mCurrentFragmentIndex != i) {
                 if (mFragments[i] != null) {
@@ -58,23 +71,37 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         switch (index) {
             case 0:
                 mCurrentCheckId = R.id.rb_main_shanghai;
+                mTopPosition = 0;
                 break;
             case 1:
                 mCurrentCheckId = R.id.rb_main_hangzhou;
+                mTopPosition = 1;
                 break;
             case 2:
                 mCurrentCheckId = R.id.rb_main_beijing;
+                mBottomPosition = 2;
                 break;
             case 3:
                 mCurrentCheckId = R.id.rb_main_shenzhen;
+                mBottomPosition = 3;
                 break;
         }
     }
 
+    @Override
+    public int getTopPosition() {
+        return mTopPosition;
+    }
+
+    @Override
+    public int getBottomPosition() {
+        return mBottomPosition;
+    }
+
     // 创建当前fragment
-    private void newCurrentFragment(int mCurrentFragmentIndex) {
+    private void newCurrentFragment(int index) {
         Fragment fragment = null;
-        switch (mCurrentFragmentIndex) {
+        switch (index) {
             case 0:
                 fragment = new ShanghaiFragment();
                 break;
@@ -88,7 +115,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
                 fragment = new ShenzhenFragment();
                 break;
         }
-        mFragments[mCurrentFragmentIndex] = fragment;
+        mFragments[index] = fragment;
         addAndShowFragment(fragment);
     }
 

@@ -1,8 +1,15 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment;
 
 
-import androidx.fragment.app.Fragment;
+import com.yoyozhangh.github.todayinfomation.R;
+import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
+import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 
-public class ShenzhenFragment extends Fragment {
+@ViewInject(mainlayoutid = R.layout.fragment_shenzhen)
+public class ShenzhenFragment extends BaseFragment {
 
+    @Override
+    public void afterBindView() {
+
+    }
 }

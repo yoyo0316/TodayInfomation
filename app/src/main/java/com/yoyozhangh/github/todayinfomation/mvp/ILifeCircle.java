@@ -16,7 +16,6 @@ public interface ILifeCircle {
 
     void onStop();
 
-
     void onDestroy();
 
     void destroyView();

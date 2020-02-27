@@ -7,7 +7,7 @@ import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;
 import com.yoyozhangh.github.todayinfomation.mvp.MvpControler;
 
 public interface IMainActivityContract {
-    interface Iview extends IMvpView{
+    interface Iview extends IMvpView {
         void showFragment(Fragment fragment);
 
         void addFragment(Fragment fragment);
@@ -15,9 +15,18 @@ public interface IMainActivityContract {
         void hideFragment(Fragment mFragment);
     }
 
-    interface  IPresenter extends ILifeCircle{
+    interface IPresenter extends ILifeCircle {
 
         void initHomeFragment();
+
+        int getCurrentCheckedId();
+
+        int getCurrentCheckedIndex();
+
+        void replaceFragment(int currentFragmentIndex);
+
+        int getTopPosition();
+        int getBottomPosition();
     }
 
     Iview emptyView = new Iview() {
