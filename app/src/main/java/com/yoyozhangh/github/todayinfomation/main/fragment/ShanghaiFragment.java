@@ -1,6 +1,8 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment;
 
 
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -13,7 +15,7 @@ import butterknife.BindView;
 
 @ViewInject(mainlayoutid = R.layout.fragment_shanghai)
 public class ShanghaiFragment extends BaseFragment {
-
+    public static String TAG = "ShanghaiFragment";
 
     @BindView(R.id.tv_shanghai_welcome)
     TextView tvShanghaiWelcome;
@@ -24,6 +26,17 @@ public class ShanghaiFragment extends BaseFragment {
 
     @Override
     public void afterBindView() {
+        shanghaiAppBarlayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.d(TAG, "shanghaiAppBarlayout onOffsetChanged: appBarLayout height= [" + appBarLayout.getMeasuredHeight() + "], verticalOffset = [" + verticalOffset + "]");
 
+                if (-verticalOffset < appBarLayout.getMeasuredHeight()/2){
+                    tvShanghaiWelcome.setVisibility(View.INVISIBLE);
+                }else {
+                    tvShanghaiWelcome.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 }
