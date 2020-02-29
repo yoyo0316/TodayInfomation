@@ -1,0 +1,50 @@
+
+Design 控件
+
+包引用
+ implementation 'com.android.support:design:28.0.0'
+
+ 全称是 Android Material Design 是一套全新的控件库，
+ 里面包含 AppBarLayout 、CollapsingToolbarLayout 、FloatingActionButton 、 NavigationView  、
+ Snackbar 、 TabLayout 、TextInputLayout 这八种控件
+
+
+
+CoordinatorLayout 是一个整体的ViewGroup，它主要的作用是协调各个子View之间的滑动交互，也就是Behavior
+
+AppBarLayout ：首先 AppBarLayout 是一个LinearLayout，它的子View默认纵向排列的，可以通过一些参数控制子View的滑动行为
+AppBarLayout 对下面的子控件提供一些layout_scrollFlags 属性的配置
+layout_scrollFlags 配置详细说明：
+
+全局滑动事件处理
+Scroll:跟着滑动的方向进行滑动，如果不配置会一直在屏幕中静态显示
+Snap:这个属性有个明星回弹效果，当滑动距离过短时，会回弹到最近的上边缘或者下边缘
+
+向下滑动事件处理
+EnterAlways ： 这个属性其实就是向下滚动时Scrolling View 和 Child View 之间的滚动优先级问题，当向下滚动时
+优先滑出 Child View ，当全部滑出时，再处理 Scrolling View 的滑动事件。
+EnterAlwaysCollapsed :这个属性是上个属性的附加值，这里涉及到 Child View 的高度和最小高度，向下滚动时，
+Child View 先向下滚动最小高度值，然后Scrolling View 开始滚动，到达边界时 ，Child View 再向下滚动，
+直至显示完全
+
+向上滑动事件处理
+ExitUntilCollapsed :这里涉及到最小高度，发生向上滚动事件时，Child View 向上滚动退出直至最小高度，然后
+Scrolling View 开始滚动，也就是 Child View 不会完全退出屏幕。
+
+CollaspingToolbarLayout : 实现Toolbar 的折叠效果
+contentScrim :折叠后的颜色
+layout_collapseMode:
+pin 滑动时会固定到屏幕上，不会折叠，
+parallas 会发生折叠，并带有一定的视觉特效效果，视觉特效的比例由 layout_collapseParallaxMultipier 来控制
+
+Behavior 处理交互的，其中最主要有两个知识点 依赖方和被依赖方
+目前用的系统的这个Behavior 被依赖的是 APPBarLayout，依赖的就是我们下面的这个布局
+
+
+
+
+
+ RadioGroup 控件
+
+ RadioGroup 和 RadioButton 常常组合起来使用，只是 RadioButton是一种点选操作按钮，开发时也会用TextView
+ 做替代 只是RadioButton更方便一些
