@@ -24,6 +24,9 @@ https://cloud.tencent.com/developer/article/1334978
 4,高级用法
 复杂条目。设置监听时机，缓存池的应用
 RecyclerView inflate 布局时，传入的三个参数，具体有什么关系，涉及系统源码 ？？？
+1，root 不为 null ,attachToRoot 为 false， 则 子 View 会设置root 的 LayoutParams
+2, root 不为 null ,attachToRoot 为 true， 则 root 会把 子 View添加进来
+3， root 为 null ,RecycleView 会默认给子View生成一个默认的LayoutParams,所以会导致条目展示问题
 
 Adapter 简易封装及原理
 1，使用的是 RecycleView中的Adapter
