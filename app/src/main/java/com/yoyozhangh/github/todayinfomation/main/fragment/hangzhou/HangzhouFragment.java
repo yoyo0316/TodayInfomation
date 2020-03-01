@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation.main.fragment;
+package com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou;
 
 
 import androidx.fragment.app.Fragment;

@@ -3,10 +3,10 @@ package com.yoyozhangh.github.todayinfomation.main;
 import androidx.fragment.app.Fragment;
 
 import com.yoyozhangh.github.todayinfomation.R;
-import com.yoyozhangh.github.todayinfomation.main.fragment.BeijingFragment;
-import com.yoyozhangh.github.todayinfomation.main.fragment.HangzhouFragment;
-import com.yoyozhangh.github.todayinfomation.main.fragment.ShanghaiFragment;
-import com.yoyozhangh.github.todayinfomation.main.fragment.ShenzhenFragment;
+import com.yoyozhangh.github.todayinfomation.main.fragment.beijing.BeijingFragment;
+import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.HangzhouFragment;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.ShanghaiFragment;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shenzhen.ShenzhenFragment;
 import com.yoyozhangh.github.todayinfomation.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {

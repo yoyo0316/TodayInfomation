@@ -1,0 +1,34 @@
+
+RecycleView
+
+1，Recycler
+管理那些已经废弃了的或者从 RecyclerView 中分离的item view 用于复用，主要用于缓存的设计
+一共四层设计
+1，一级缓存 mAttachedScrap
+2,二级缓存 mCacheViews
+3,三级缓存 mViewCacheExtension
+4,四级缓存 mRecyclerPool
+
+2,LayoutManager
+LayoutManager 是一个抽象类，有3个子类
+LinearLayoutManager 线性布局管理器
+GridLayoutManger 表格布局管理器
+StaggerGridLayoutManager 瀑布流布局管理器
+
+RecyclerView的一些开源LayoutManager
+https://cloud.tencent.com/developer/article/1334978
+
+3，Adapter
+适配器设计模式 把相应数据data 展示到不同的布局view中
+
+Adapter 简易封装及原理
+1，使用的是 RecycleView中的Adapter
+2，自定义viewHolder
+3,SparseArray 原理
+4，CharSequence 与String的关系富文本
+
+自定义下拉刷新及上拉加载
+1，下拉刷新，上拉加载的基本原理及使用的场景
+2，整体是一个线性布局，里面加入相应的头布局，显示布局及尾布局
+
+自定义组合控件的封装思想
