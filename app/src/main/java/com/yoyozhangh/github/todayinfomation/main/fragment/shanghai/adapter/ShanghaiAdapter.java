@@ -1,5 +1,6 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiBean;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view.ShanghaiDetailActivity;
 
 import java.util.ArrayList;
 
@@ -28,10 +30,10 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
     private final ArrayList<ShanghaiBean> mData;
     private final boolean mIsHor;
 
-    private Context mContext;
+    private Activity mContext;
     private RecyclerView.RecycledViewPool recycledViewPool;
 
-    public ShanghaiAdapter(Context context, ArrayList<ShanghaiBean> data, boolean isHor) {
+    public ShanghaiAdapter(Activity context, ArrayList<ShanghaiBean> data, boolean isHor) {
         recycledViewPool = new RecyclerView.RecycledViewPool();
         mContext = context;
         mData = data;
@@ -100,8 +102,9 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
             this.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = (int) view.getTag();
-                    Toast.makeText(mContext, "我被点击了 position=" + position, Toast.LENGTH_LONG).show();
+//                    int position = (int) view.getTag();
+//                    Toast.makeText(mContext, "我被点击了 position=" + position, Toast.LENGTH_LONG).show();
+                    ShanghaiDetailActivity.start_5_0(mContext,mImageView);
                 }
             });
         }
