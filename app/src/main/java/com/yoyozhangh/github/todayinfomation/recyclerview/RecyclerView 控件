@@ -21,6 +21,10 @@ https://cloud.tencent.com/developer/article/1334978
 3，Adapter
 适配器设计模式 把相应数据data 展示到不同的布局view中
 
+4,高级用法
+复杂条目。设置监听时机，缓存池的应用
+RecyclerView inflate 布局时，传入的三个参数，具体有什么关系，涉及系统源码 ？？？
+
 Adapter 简易封装及原理
 1，使用的是 RecycleView中的Adapter
 2，自定义viewHolder

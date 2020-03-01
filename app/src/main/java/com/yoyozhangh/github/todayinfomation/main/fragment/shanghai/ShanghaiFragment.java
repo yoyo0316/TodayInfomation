@@ -14,8 +14,7 @@ import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.adapter.ShanghaiAdapter;
-
-import java.util.ArrayList;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDataManager;
 
 import butterknife.BindView;
 
@@ -41,11 +40,11 @@ public class ShanghaiFragment extends BaseFragment {
 
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        ArrayList<String> data = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            data.add("上海市欢迎您");
-        }
-        mRecyclerView.setAdapter(new ShanghaiAdapter(data));
+//        ArrayList<String> data = new ArrayList<>();
+//        for (int i = 0; i < 15; i++) {
+//            data.add("上海市欢迎您");
+//        }
+        mRecyclerView.setAdapter(new ShanghaiAdapter(mContext, ShanghaiDataManager.getData()));
     }
 
     private void initListener() {
