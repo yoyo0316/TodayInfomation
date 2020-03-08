@@ -15,3 +15,11 @@ Get 请求
 从指定的资源请求数据
 GET请求不应在处理敏感数据时使用
 GET请求有长度限制
+
+聚合数据平台
+http://v.juhe.cn/joke/content/list.php?sort=desc&page=1&pagesize=2&time=1583657287&key=d56906ce69cedeb9ba50f39509315db4
+
+
+POST 请求
+向指定的服务端推送数据
+POST请求数据长度没有限制

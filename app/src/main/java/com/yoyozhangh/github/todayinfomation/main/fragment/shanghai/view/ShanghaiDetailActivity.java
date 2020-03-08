@@ -21,6 +21,8 @@ import java.io.IOException;
 import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,14 +40,19 @@ public class ShanghaiDetailActivity extends BaseActivity {
         initAnima();
 
         initGetNetData();
+        initPostNetData();
     }
 
-    /**
-     * 发送网络请求数据
-     */
-    private void initGetNetData() {
+    private void initPostNetData() {
         OkHttpClient client = new OkHttpClient();// okhttp 配置一些默认
-        Request request = new Request.Builder().url("http://www.baidu.com/").get().build();// 建造者设计模式
+
+        FormBody.Builder builder = new FormBody.Builder();
+        builder.add("key","d2d1bf028b2e0a775442ad39b12e9b13");
+
+        Request request = new Request.Builder()
+                .url("http://apis.juhe.cn/lottery/types")
+                .post(builder.build())
+                .build();// 建造者设计模式
         Call call = client.newCall(request);
 
 //        //同步请求
@@ -60,12 +67,55 @@ public class ShanghaiDetailActivity extends BaseActivity {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("initGetNetData", "onFailure: "+e);
+                Log.e("initPostNetData", "onFailure: " + e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.e("initGetNetData", "onResponse: "+response.body().string());
+                Log.e("initPostNetData", "onResponse: " + response.body().string());
+            }
+        });
+    }
+
+    /**
+     * 发送网络请求数据
+     */
+    private void initGetNetData() {
+        OkHttpClient client = new OkHttpClient();// okhttp 配置一些默认
+
+        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+        builder.addQueryParameter("sort", "desc");
+        builder.addQueryParameter("page", "1");
+        builder.addQueryParameter("pagesize", "2");
+        builder.addQueryParameter("time", "" + System.currentTimeMillis() / 1000);
+        builder.addQueryParameter("key", "d56906ce69cedeb9ba50f39509315db4");
+
+        String requestUrl = builder.toString();
+        Log.e("initGetNetData", "requestUrl: " + requestUrl);
+        Request request = new Request.Builder()
+                .url(builder.build())
+                .get()
+                .build();// 建造者设计模式
+        Call call = client.newCall(request);
+
+//        //同步请求
+//        try {
+//            Response response = call.execute();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+        //异步请求
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("initGetNetData", "onFailure: " + e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("initGetNetData", "onResponse: " + response.body().string());
             }
         });
     }
