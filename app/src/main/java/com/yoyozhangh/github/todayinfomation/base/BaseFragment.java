@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.yoyozhangh.github.todayinfomation.mvp.view.LifeCircleMvpFragment;
+import com.yoyozhangh.github.mvp.mvp.view.LifeCircleMvpFragment;
 
 import butterknife.ButterKnife;
 

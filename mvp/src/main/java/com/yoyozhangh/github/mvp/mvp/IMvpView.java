@@ -1,4 +1,4 @@
-package com.yoyozhangh.github.todayinfomation.mvp;
+package com.yoyozhangh.github.mvp.mvp;
 
 public interface IMvpView {
 

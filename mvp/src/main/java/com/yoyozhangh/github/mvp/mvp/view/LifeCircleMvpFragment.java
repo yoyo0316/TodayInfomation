@@ -1,15 +1,19 @@
-package com.yoyozhangh.github.todayinfomation.mvp.view;
+package com.yoyozhangh.github.mvp.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;
-import com.yoyozhangh.github.todayinfomation.mvp.MvpControler;
+import com.yoyozhangh.github.mvp.mvp.IMvpView;
+import com.yoyozhangh.github.mvp.mvp.MvpControler;
 
-public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView {
+public class LifeCircleMvpFragment extends Fragment implements IMvpView {
 
 
     private MvpControler mvpControler;
@@ -23,31 +27,35 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = this.getIntent();
-        if (intent == null) {
-            intent = new Intent();
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            bundle = new Bundle();
         }
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
-            mvpControler.onCreate(savedInstanceState, intent, null);
-            mvpControler.onActiviytCreate(savedInstanceState, intent, null);
+            mvpControler.onCreate(savedInstanceState, null, bundle);
         }
 
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         MvpControler mvpControler = getMvpControler();
+        Bundle bundle = getArguments();
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
         if (mvpControler != null) {
-            mvpControler.onNewIntent(intent);
+            mvpControler.onCreate(savedInstanceState, null, bundle);
+            mvpControler.onActiviytCreate(savedInstanceState, null, bundle);
         }
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -56,7 +64,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -65,7 +73,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -74,7 +82,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -83,7 +91,16 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroyView() {
+        super.onDestroyView();
+        MvpControler mvpControler = getMvpControler();
+        if (mvpControler != null) {
+            mvpControler.onViewDestroy();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -92,7 +109,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {
@@ -102,7 +119,7 @@ public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MvpControler mvpControler = getMvpControler();
         if (mvpControler != null) {

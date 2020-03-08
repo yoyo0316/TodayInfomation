@@ -7,7 +7,7 @@ import com.yoyozhangh.github.todayinfomation.main.fragment.beijing.BeijingFragme
 import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.HangzhouFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.ShanghaiFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shenzhen.ShenzhenFragment;
-import com.yoyozhangh.github.todayinfomation.mvp.base.BaseMvpPresenter;
+import com.yoyozhangh.github.mvp.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {
 

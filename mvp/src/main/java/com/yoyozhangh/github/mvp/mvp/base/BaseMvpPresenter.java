@@ -1,10 +1,10 @@
-package com.yoyozhangh.github.todayinfomation.mvp.base;
+package com.yoyozhangh.github.mvp.mvp.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;
-import com.yoyozhangh.github.todayinfomation.mvp.presenter.LifeCircleMvpPresenter;
+import com.yoyozhangh.github.mvp.mvp.IMvpView;
+import com.yoyozhangh.github.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 /**
  * P 层的中间类

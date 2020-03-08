@@ -1,8 +1,8 @@
-package com.yoyozhangh.github.todayinfomation.mvp.presenter;
+package com.yoyozhangh.github.mvp.mvp.presenter;
 
-import com.yoyozhangh.github.todayinfomation.mvp.ILifeCircle;
-import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;
-import com.yoyozhangh.github.todayinfomation.mvp.MvpControler;
+import com.yoyozhangh.github.mvp.mvp.ILifeCircle;
+import com.yoyozhangh.github.mvp.mvp.IMvpView;
+import com.yoyozhangh.github.mvp.mvp.MvpControler;
 
 import java.lang.ref.WeakReference;
 

@@ -2,9 +2,9 @@ package com.yoyozhangh.github.todayinfomation.main;
 
 import androidx.fragment.app.Fragment;
 
-import com.yoyozhangh.github.todayinfomation.mvp.ILifeCircle;
-import com.yoyozhangh.github.todayinfomation.mvp.IMvpView;
-import com.yoyozhangh.github.todayinfomation.mvp.MvpControler;
+import com.yoyozhangh.github.mvp.mvp.ILifeCircle;
+import com.yoyozhangh.github.mvp.mvp.IMvpView;
+import com.yoyozhangh.github.mvp.mvp.MvpControler;
 
 public interface IMainActivityContract {
     interface Iview extends IMvpView {

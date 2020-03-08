@@ -2,7 +2,7 @@ package com.yoyozhangh.github.todayinfomation.splash;
 
 import android.util.Log;
 
-import com.yoyozhangh.github.todayinfomation.mvp.base.BaseMvpPresenter;
+import com.yoyozhangh.github.mvp.mvp.base.BaseMvpPresenter;
 
 /**
  * Presenter 层

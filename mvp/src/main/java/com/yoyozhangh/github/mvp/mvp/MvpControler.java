@@ -1,9 +1,9 @@
-package com.yoyozhangh.github.todayinfomation.mvp;
+package com.yoyozhangh.github.mvp.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.yoyozhangh.github.todayinfomation.mvp.presenter.LifeCircleMvpPresenter;
+import com.yoyozhangh.github.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 import java.util.HashSet;
 import java.util.Iterator;
