@@ -1,0 +1,17 @@
+
+okhttp 源码解析
+
+OkhttpClient :建议Okhttp 的客户端，初始化okHttp 要使用的配置信息
+Request ：请求信息封装
+Call:可执行异步或者同步请求
+Interceptor:Okhttp 中的精华就是拦截器，责任链设计模式
+RetryAndFollowUpInterceptor :负责错误重试及重定向
+BridgeInterceptor:负责组装请求及解析数据
+CacheInterceptor: 负责读取缓存和更新缓存
+ConnectInterceptor:负责和服务器建立连接
+CallServerInterceptor:负责发送请求及接受数据 Okio对接
+
+Get 请求
+从指定的资源请求数据
+GET请求不应在处理敏感数据时使用
+GET请求有长度限制

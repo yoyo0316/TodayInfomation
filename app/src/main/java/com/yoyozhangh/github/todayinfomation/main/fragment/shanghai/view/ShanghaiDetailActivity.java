@@ -4,19 +4,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
-import androidx.core.view.ViewCompat;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 
+import java.io.IOException;
+
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 @ViewInject(mainlayoutid = R.layout.activity_shanghai_detail)
 public class ShanghaiDetailActivity extends BaseActivity {
@@ -29,6 +36,38 @@ public class ShanghaiDetailActivity extends BaseActivity {
     @Override
     public void afterBindView() {
         initAnima();
+
+        initGetNetData();
+    }
+
+    /**
+     * 发送网络请求数据
+     */
+    private void initGetNetData() {
+        OkHttpClient client = new OkHttpClient();// okhttp 配置一些默认
+        Request request = new Request.Builder().url("http://www.baidu.com/").get().build();// 建造者设计模式
+        Call call = client.newCall(request);
+
+//        //同步请求
+//        try {
+//            Response response = call.execute();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+        //异步请求
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("initGetNetData", "onFailure: "+e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("initGetNetData", "onResponse: "+response.body().string());
+            }
+        });
     }
 
     private void initAnima() {
