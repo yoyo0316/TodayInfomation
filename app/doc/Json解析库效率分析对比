@@ -1,0 +1,24 @@
+
+版本号：
+Gson 2.8.5
+FastJson 1.1.70
+JackSon 2.9.7
+
+主要对比了下 序列化和反序列化 同样 Json 格式及数据量的效率
+
+// 反序列化耗时（把字节系列转换为对象的过程称为对象的反序列化）
+gson      3770ms 触发四次GC
+fastJson  4385ms 触发两次GC
+Jackson   3108ms  触发一次GC
+
+序列化耗时  （把对象转换为字节系列的过程称为对象的序列化）
+gson      5470ms  四次GC
+fastjson  3094ms  三次GC
+jackson    967ms  一次GC
+
+下面依次是 Gson Fastjson  jackson 各库在反序列化时内存的情况
+
+1，数据量小的时候 用哪个库都差不多，
+2，Gson 和 Jackson 在解析要New 一个对象，比如 Gson 是 new Gson ，Jackson 是 new ObjectMapper
+避免要在 for循环不断new 这个对象，会增大性能消耗，这个对象是可以复用的，建议使用单例。
+

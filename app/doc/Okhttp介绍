@@ -23,3 +23,8 @@ http://v.juhe.cn/joke/content/list.php?sort=desc&page=1&pagesize=2&time=15836572
 POST 请求
 向指定的服务端推送数据
 POST请求数据长度没有限制
+
+//OKHTTP之缓存配置详解
+//https://www.jianshu.com/p/647dfd41194e?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
+ // 配置网络缓存
+//builder.cache(new Cache())

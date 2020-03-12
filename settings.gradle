@@ -1,2 +1,2 @@
-include ':app', ':mvp', ':http'
+include ':app', ':mvp', ':http', ':task'
 rootProject.name='TodayInfomation'

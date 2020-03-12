@@ -1,0 +1,20 @@
+
+什么是泛型？
+泛型，即 参数化类型
+
+泛型的作用
+比如 大家常用的ArrayList 等，通过注入相应的参数，可承载不同的类和对象，当类型不匹配时会报错，
+在某种程度上提高了编码的安全性。
+
+泛型有哪些使用技巧
+泛型接口、类，泛型函数，Class<T> ,泛型数组，类型绑定，通配符等。
+
+ArrayList<?> arrayList; 通配符
+
+java中关于泛型<T> 中字母的规范分类
+E- Element ,常用在java Collection 里，如 List<E>, Iterator<E>,set<E>
+K,V --Key ,Value 代表Map的键值对
+N -Number 数字
+T-Type 类型。如String，Integer
+
+这仅仅是一个规范而已，传入其他也不会报错

@@ -8,13 +8,14 @@ import com.yoyozhangh.github.mvp.mvp.presenter.LifeCircleMvpPresenter;
 
 /**
  * P 层的中间类
+ * 泛型类
  *
  * @param <T>
  */
 public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter<T> {
 
 
-    public BaseMvpPresenter(T view){
+    public BaseMvpPresenter(T view) {
         super(view);
     }
 
@@ -72,4 +73,5 @@ public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvp
     public void onSaveInstanceState(Bundle bundle) {
 
     }
+
 }

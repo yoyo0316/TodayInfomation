@@ -43,10 +43,12 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 
+
     //网络
     implementation("com.squareup.okhttp3:okhttp:3.12.0")
 
     // module 的依赖引入
     implementation project(path: ':mvp')
     implementation project(path: ':http')
+    implementation project(path: ':task')
 }
