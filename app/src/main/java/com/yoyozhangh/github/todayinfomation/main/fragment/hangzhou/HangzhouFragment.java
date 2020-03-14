@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
+import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.adapter.HangzhouViewPagerAdapter;
 import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view.ZhiHuFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shenzhen.ShenzhenFragment;
 
@@ -53,33 +54,7 @@ public class HangzhouFragment extends BaseFragment {
 //            }
 //        });
 
-        vpViewpager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
-            @NonNull
-            @Override
-            public Fragment getItem(int position) {
-                Log.e("HangzhouFragment", "getItem: position=" + position);
-
-                //根据不同的position 分别new 不同的fragment
-//                switch (position){
-//                    case 
-//                }
-
-                return new ZhiHuFragment();
-            }
-
-            @Override
-            public int getCount() {
-//                return arrayList.size();
-                return 1;
-            }
-
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-//                return arrayList.get(position);
-                return "知乎";
-            }
-        });
+        vpViewpager.setAdapter(new HangzhouViewPagerAdapter(getChildFragmentManager()));
 
 //        vpViewpager.postDelayed(new Runnable() {
 //            @Override
