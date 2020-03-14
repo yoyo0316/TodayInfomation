@@ -40,9 +40,24 @@ parallas 会发生折叠，并带有一定的视觉特效效果，视觉特效�
 Behavior 处理交互的，其中最主要有两个知识点 依赖方和被依赖方
 目前用的系统的这个Behavior 被依赖的是 APPBarLayout，依赖的就是我们下面的这个布局
 
-
-
-
+自定义Behavior
+Material Design 里面的CoordinatorLayout 是一个非常强大的控件，它接管了child 组件之间的交互
+让你滑动交互使用更加方便简单，效果也更加强大，不需要像以前那样自己处理一坨乱七八糟的滑动，事件
+传递之类的处理了。
+其实Behavior就是一个应用于view的观察者模式，一个View跟随着另外一个view的变化而变化，或者说一个
+view监听另外一个view
+在Behavior 中，被观察的view 也就是事件源被称为dependev,而观察view则被称为child
+Behavior中的几个重要方法
+Behavior是一个顶层抽象类，其他的一些具体行为的Behavior都是继承自这个类，它提供几个重要的方法
+layoutDependOn
+onDependViewChanged
+onStartNetedScroll
+onNestedPreScroll
+onNestedScroll
+onStopNestedScroll
+onNestedScrollAccepted
+onNestedPreFling
+onLayoutChild
 
  RadioGroup 控件
 

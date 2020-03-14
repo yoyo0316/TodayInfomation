@@ -1,0 +1,9 @@
+
+
+Tablayout使用全解，一篇就够了
+https://www.jianshu.com/p/fde38f367019
+
+app:tabIndicatorColor ：指示线的颜色
+app:tabIndicatorHeight ：指示线的高度
+app:tabSelectedTextColor ： tab选中时的字体颜色
+app:tabMode="scrollable" ： 默认是fixed，固定的；scrollable：可滚动的
