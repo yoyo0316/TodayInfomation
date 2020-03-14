@@ -1,0 +1,16 @@
+
+
+事件分发
+onTouchEvent   触摸事件的处理
+dispatchTouchEvent 传递触摸事件
+onInterceptTouchEvent 拦截事件传递
+requestDisallowInterceptTouchEvent 请求自己的父布局不要拦截事件
+
+
+总结
+如果 viewGroup 和 view  的 onTouchEvent 都返回 true 如何处理？
+1，Android 中事件的消费 会优先让子view去处理
+2，如果 viewGroup 很想处理这个事件怎么办？ 使用 onInterceptTouchEvent 返回true即可
+3，如果使用第三方的viewGroup ，但是它拦截了事件怎么办 ？ 使用 requestDisallowInterceptTouchEvent
+请求ViewGroup 不要去处理这个事件。
+
