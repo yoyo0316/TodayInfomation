@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
+import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view.ZhiHuFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shenzhen.ShenzhenFragment;
 
 import java.util.ArrayList;
@@ -63,20 +64,20 @@ public class HangzhouFragment extends BaseFragment {
 //                    case 
 //                }
 
-                return new ShenzhenFragment();
+                return new ZhiHuFragment();
             }
 
             @Override
             public int getCount() {
 //                return arrayList.size();
-                return 5;
+                return 1;
             }
 
             @Nullable
             @Override
             public CharSequence getPageTitle(int position) {
 //                return arrayList.get(position);
-                return "深圳";
+                return "知乎";
             }
         });
 

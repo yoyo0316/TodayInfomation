@@ -16,9 +16,9 @@ public class ShanghaiDetailBean {
     public XiaohuaListBean result;
 
     public static class XiaohuaListBean {
-        public List<DataBean> data;
+        public List<XiaohuaBean> data;
 
-        public static class DataBean {
+        public static class XiaohuaBean {
             /**
              * content : 有一天晚上我俩一起吃西瓜，老大把西瓜籽很整洁的吐在了一张纸上，
              * 过了几天，我从教室回但宿舍看到老大在磕瓜子，
@@ -36,7 +36,7 @@ public class ShanghaiDetailBean {
 
             @Override
             public String toString() {
-                return "DataBean{" +
+                return "XiaohuaBean{" +
                         "content='" + content + '\'' +
                         ", hashId='" + hashId + '\'' +
                         ", unixtime=" + unixtime +

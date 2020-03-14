@@ -11,6 +11,8 @@
         android:layout_height="50dp"/>
 
     <TextView
+        android:maxLines="2"
+        android:ellipsize="end"
         android:id="@+id/item_shanghai_tv"
         android:layout_width="match_parent"
         android:layout_height="50dp"

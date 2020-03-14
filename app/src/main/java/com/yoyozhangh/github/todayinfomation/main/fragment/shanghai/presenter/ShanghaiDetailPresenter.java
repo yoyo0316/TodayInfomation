@@ -9,10 +9,7 @@ import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.If.IShanghai
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDetailBean;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.module.ShanghaiDetailHttpTask;
 
-import java.util.ArrayList;
-
 public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContract.Iview> implements IShanghaiDetailContract.IPresenter {
-
 
 
     public ShanghaiDetailPresenter(IShanghaiDetailContract.Iview view) {
@@ -25,7 +22,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
     }
 
     @Override
-    public void getNetData() {
+    public void getNetData(int pageSize) {
 
         // 1,数据结果的解析怎么来做
         // 2,相同任务的去重工作
@@ -84,7 +81,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
         submitTask(new JHTask<ShanghaiDetailBean>() {
             @Override
             public IResult<ShanghaiDetailBean> onBackground() {
-                return new ShanghaiDetailHttpTask<ShanghaiDetailBean>().getXiaohuaList("desc", "1", "2");
+                return new ShanghaiDetailHttpTask<ShanghaiDetailBean>().getXiaohuaList("desc", "1", pageSize + "");
             }
 
             @Override
@@ -92,6 +89,8 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
                 ShanghaiDetailBean detailBean = t.data();
 
                 Log.e("getNetData", "onSucess: " + detailBean.toString());
+
+                getView().showData(detailBean);
             }
         });
     }

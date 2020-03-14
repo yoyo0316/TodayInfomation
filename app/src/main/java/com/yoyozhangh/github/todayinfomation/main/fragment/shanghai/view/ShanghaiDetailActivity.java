@@ -16,6 +16,7 @@ import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.If.IShanghaiDetailContract;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDetailBean;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.presenter.ShanghaiDetailPresenter;
 
 import java.io.IOException;
@@ -96,7 +97,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.getNetData();
+                mPresenter.getNetData(1);
             }
         });
 
@@ -189,6 +190,11 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);
             ActivityCompat.startActivity(activity, intent, optionsCompat.toBundle());
         }
+
+    }
+
+    @Override
+    public void showData(ShanghaiDetailBean detailBean) {
 
     }
 }
