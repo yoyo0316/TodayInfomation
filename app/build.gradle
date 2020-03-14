@@ -42,7 +42,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
-
+    // lottie
+    implementation 'com.airbnb.android:lottie:2.2.5'
 
     //网络
     implementation("com.squareup.okhttp3:okhttp:3.12.0")
