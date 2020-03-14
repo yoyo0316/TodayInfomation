@@ -1,5 +1,7 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view;
 
+import android.view.animation.AnimationUtils;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +33,7 @@ public class ZhiHuFragment extends BaseFragment implements IShanghaiDetailContra
     @Override
     public void afterBindView() {
         zhihuRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        zhihuRecyclerView.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.zhihu_recyclerview_show));
         mPresenter.getNetData(20);
     }
 

@@ -1,6 +1,8 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.jike;
 
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -31,6 +33,10 @@ public class LikeClickView extends View {
 
     int left;
     int top;
+    private float handScale = 1.0f;
+    private int centerY;
+    private int centerX;
+
 
     public LikeClickView(Context context) {
         this(context, null);
@@ -68,9 +74,16 @@ public class LikeClickView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Bitmap handBitmap = isLike ? likeBitmap : unlikeBitmap;
+
+        // 使用 canvas scale  及其他的效果方法时，必须先调用 save ,然后再调用 restore 方法（这两个方法成对出现）
+        canvas.save();
+        canvas.scale(handScale, handScale,centerX,centerY);
         canvas.drawBitmap(handBitmap, left, top, bitmapPaint);
+        canvas.restore();
+
+
         if (isLike) {
-            canvas.drawBitmap(shininglikeBitmap, left + 15, 0, bitmapPaint);
+            canvas.drawBitmap(shininglikeBitmap, left + 20, 0, bitmapPaint);
         }
     }
 
@@ -129,6 +142,13 @@ public class LikeClickView extends View {
 
         left = (measureWidth - bitmapWidth) / 2;
         top = (measureHeight - bitmapHeight) / 2;
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+
+        centerX = width / 2;
+        centerY = height / 2;
+
+
     }
 
 
@@ -157,7 +177,36 @@ public class LikeClickView extends View {
     // TODO: 2020/3/14/014 待完善动画处理
     private void onClick() {
         isLike = !isLike;
+//        ObjectAnimator handScale = ObjectAnimator.ofFloat(this, "handScale", 1.0f, 0.5f, 1.0f);
+//        handScale.setDuration(250);
+//        handScale.start();
+
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedValue = (float) animation.getAnimatedValue();
+                handScale = animatedValue;
+
+                invalidate();
+            }
+        });
+        valueAnimator.setDuration(250);
+        valueAnimator.start();
         //调用 invalidate 会触发 onDraw 方法
-        invalidate();
+//        invalidate();
     }
+
+//    /**
+//     * 使用ObjectAnimator 系统会自动调用该属性的set 方法
+//     *
+//     * @param value
+//     */
+//    public void setHandScale(float value) {
+//        this.handScale = value;
+//
+//        invalidate();
+//    }
+
 }

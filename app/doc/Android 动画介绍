@@ -1,0 +1,28 @@
+
+补间动画
+平移：
+旋转：
+缩放：
+渐变：
+小案例：给RecycleView设置动画
+
+属性动画
+ObjectAnimator translation(x或者y) rotation(x 或y) sacle(x或y)
+ValueAnimator
+ValueAnimator 类是先改变值，然后手动赋值给对象的属性从而实现动画
+是间接对对象属性进行操作
+ObjectAnimator 类是先改变值，然后自动赋值给对象的属性从而实现动画
+是直接对对象属性进行操作
+ObjectAnimator 类针对的是任意对象 & 任意属性值，并不是单单针对于View对象
+
+帧动画
+AnimateDrawable
+
+
+属性动画 与补间动画的区别 ？？？
+
+补间动画 只能作用于 View上，而属性动画可以作用于任何属性值的，并不仅仅针对view对象
+
+补间动画 移动的是它的影子，view 的真实位置没有改变 ，而属性动画 真实的位置是改变的。
+
+如果需要ObjectAnimator 类来实现动画效果，那么需要操作的对象就必须有该属性的set() get() 方法
