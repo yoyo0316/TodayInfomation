@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view.JiKeFragment;
+import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view.RefreshFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.view.ZhiHuFragment;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class HangzhouViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         titleList.add("知乎");
         titleList.add("即刻");
+        titleList.add("下拉刷新");
     }
 
     public HangzhouViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -33,6 +35,8 @@ public class HangzhouViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new ZhiHuFragment();
             case 1:
                 return new JiKeFragment();
+            case 2:
+                return new RefreshFragment();
             default:
                 return null;
         }
