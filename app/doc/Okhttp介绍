@@ -1,30 +1,24 @@
 
-okhttp 源码解析
 
-OkhttpClient :建议Okhttp 的客户端，初始化okHttp 要使用的配置信息
-Request ：请求信息封装
-Call:可执行异步或者同步请求
-Interceptor:Okhttp 中的精华就是拦截器，责任链设计模式
-RetryAndFollowUpInterceptor :负责错误重试及重定向
-BridgeInterceptor:负责组装请求及解析数据
-CacheInterceptor: 负责读取缓存和更新缓存
-ConnectInterceptor:负责和服务器建立连接
-CallServerInterceptor:负责发送请求及接受数据 Okio对接
+1，什么是okHttp
+OKhttp  是一个第三方类库，用于Android中的网络请求，这是一个开源项目，是Android端最火热的轻量级框架，由移动支付Square公司贡献
+该公司还贡献了 Picasso 和LeakCanary
 
-Get 请求
-从指定的资源请求数据
-GET请求不应在处理敏感数据时使用
-GET请求有长度限制
+2，为什么要使用okhttp
+Okhttp 是 Android 版http客户端，非常高效，支持SPDY，连接池，GZI 和HTTP缓存，支持SPDY可以合并 多个到 同一个主机的请求。
 
-聚合数据平台
-http://v.juhe.cn/joke/content/list.php?sort=desc&page=1&pagesize=2&time=1583657287&key=d56906ce69cedeb9ba50f39509315db4
+OKHTTP处理了 很多网络疑难杂症，会从很多常用的连接问题 中自动恢复，如果 您的 服务器配置了多个IP 地址，当第一个IP 连接失败的 时候，OKhttp会自动尝试 下一个IP
 
+Okhttp 还处理了代理服务器问题和SSL握手失败问题。
 
-POST 请求
-向指定的服务端推送数据
-POST请求数据长度没有限制
+3，如何使用
+当我们 使用一个三方库时，最好就是减少 对其API的依赖，所以我们要对原始的Okhttp做二次封装来实现我们的业务需求，
+如何封装就要 对其原理及 一些常用的API非常熟悉，下面我们会系统的学习网络这一块，然后封装成符合 我们业务的SDK
 
-//OKHTTP之缓存配置详解
-//https://www.jianshu.com/p/647dfd41194e?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
- // 配置网络缓存
-//builder.cache(new Cache())
+4，网络请求构建，网络请求发送，网络请求解析
+说起网络请求就要先了解什么是HTTP？
+功能：本地持久化数据，定制化的解析器，定制化的构建器，可以自由切换网络库
+
+5，与 Task线程池 进行绑定
+
+6，申请权限
