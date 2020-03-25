@@ -6,12 +6,12 @@
     android:orientation="vertical">
 
     <ImageView
-
         android:id="@+id/loading"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_margin="10dp"
         android:scaleX="0"
         android:scaleY="0"
-        android:src="@drawable/pic_shanghai" />
+        android:src="@drawable/pull_image" />
 </LinearLayout>
