@@ -3,13 +3,13 @@ package com.yoyozhangh.github.todayinfomation.main;
 import androidx.fragment.app.Fragment;
 
 import com.yoyozhangh.github.todayinfomation.R;
+import com.yoyozhangh.github.todayinfomation.base.BasePresenter;
 import com.yoyozhangh.github.todayinfomation.main.fragment.beijing.BeijingFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.hangzhou.HangzhouFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.ShanghaiFragment;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shenzhen.ShenzhenFragment;
-import com.yoyozhangh.github.mvp.mvp.base.BaseMvpPresenter;
 
-public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {
+public class MainActivityPresenter extends BasePresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {
 
     // 当前fragment角标
     private int mCurrentFragmentIndex;

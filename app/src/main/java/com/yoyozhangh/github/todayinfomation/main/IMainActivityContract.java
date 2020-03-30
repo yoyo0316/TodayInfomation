@@ -7,6 +7,7 @@ import com.yoyozhangh.github.mvp.mvp.IMvpView;
 import com.yoyozhangh.github.mvp.mvp.MvpControler;
 
 public interface IMainActivityContract {
+
     interface Iview extends IMvpView {
         void showFragment(Fragment fragment);
 

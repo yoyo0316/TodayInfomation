@@ -1,0 +1,22 @@
+
+如何使用 APT
+
+1，新建两个Java Lib
+
+第一个annotation 专门存放编译器注解
+第二个 apt 专门存放生成这个java 代码的注解处理器，并在Gradle 添加两个外部包和自定义注解依赖
+
+implementation "com.squareup:javapoet:1.9.0"
+implementation "com.google.auto.service:auto-service:1.0-rc3"
+implementation project(":annotation")
+分别是配合apt 便捷生成Java文件的工具及特定路径下生成配置文件
+
+2，注解处理器
+
+继承 abstractProcessor 并复写 process 方法，同时添加下图三个注解
+
+@AutoService(Processor.class)  //这个注解会自动在指定路径下生成一个配置文件
+@SupportedSourceVersion(SourceVersion.RELEASE_8) //注解 JDK版本
+@supportedAnnotationTypes({"com.yoyozhangh.github.annotation.MvpEmptyViewFactory"})// 注解 配置这个类所要处理的注解类型，（传入String 类型参数，格式为：包名+类名）
+
+

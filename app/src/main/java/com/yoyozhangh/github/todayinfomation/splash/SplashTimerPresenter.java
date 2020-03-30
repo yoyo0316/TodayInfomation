@@ -2,12 +2,12 @@ package com.yoyozhangh.github.todayinfomation.splash;
 
 import android.util.Log;
 
-import com.yoyozhangh.github.mvp.mvp.base.BaseMvpPresenter;
+import com.yoyozhangh.github.todayinfomation.base.BasePresenter;
 
 /**
  * Presenter 层
  */
-public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter {
+public class SplashTimerPresenter extends BasePresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter {
     private CustomCountDownTimer timer;
 
     private final static String TAG = "SplashTimerPresenter";
@@ -48,15 +48,15 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
     }
 
 
-    /**
-     * 防止空指针
-     *
-     * @return
-     */
-    @Override
-    protected ISplashActivityContract.Iview getEmptyView() {
-        return ISplashActivityContract.emptyView;
-    }
+//    /**
+//     * 防止空指针
+//     *
+//     * @return
+//     */
+//    @Override
+//    protected ISplashActivityContract.Iview getEmptyView() {
+////        return ISplashActivityContract.emptyView;
+//    }
 
 
 }
