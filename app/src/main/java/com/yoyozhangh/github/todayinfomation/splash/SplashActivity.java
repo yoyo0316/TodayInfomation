@@ -122,6 +122,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                MemoryTest.getInstance(SplashActivity.this);
                 finish();
             }
         });

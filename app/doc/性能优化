@@ -1,0 +1,59 @@
+
+1，内存优化
+面试问题：你了解Java内存模型么（Java7、8、9内存模型的区别）
+https://www.jianshu.com/p/4455e4234d5c
+
+java运行时内存分配详解
+https://www.cnblogs.com/hewenwu/p/3662529.html
+
+GC原理解析
+https://blog.csdn.net/lilong329329/article/details/82222713
+
+内存泄漏：
+是指程序中已动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。
+
+如何定位内存泄漏？
+1，Android studio
+打开Android studio 选中 Terminal 选项卡，运行项目到真机上，进入主界面操作各个界面，然后重新进入主界面，这个时候项目中应该只有一个MainActivity 的实例
+
+此时 在 Terminal 中输入
+
+adb shell dumpsys meminfo com.yoyozhangh.github.todayinfomation -d
+
+就有目前栈中所有的activity的实例，如果数量大于 1 说明有内存泄漏的界面
+
+通过Monitors
+打开Androidstudio ，选中 Monitors 选项卡，这个时候选中Memory, 生成 hprof 文件
+
+重启 adb
+adb kill-server
+adb start-server
+
+android studio 2.3 版本  Monitor --> memory --->Analyzer Task 分析内存泄漏
+
+
+
+2,MAT
+3,三方工具 leakcanary
+
+
+哪些操作可能造成长期的内存泄漏？
+
+<1> 静态变量引用非静态内部类
+<2> 线程操作
+<3> activity fragment 被静态持有
+<4> 单例模式传入的activity 的context
+<5> android 系统的内存泄漏
+ 当 sdk  版本 在 19 到 23 之间时，LeakCanary 会检测出系统软键盘有内存泄漏
+ http://www.imooc.com/article/13913
+
+<6> android 原生webView
+目前还没有找到有效的解决办法，除非多进程运行
+
+<7> 使用系统服务没有进行反注册
+比如使用Android系统的传感器，要进行注册，但没有反注册有时也会造成内存泄漏，
+
+
+哪些操作可能造成短期的内存泄漏？
+
+哪些操作可以减少内存使用压力？
