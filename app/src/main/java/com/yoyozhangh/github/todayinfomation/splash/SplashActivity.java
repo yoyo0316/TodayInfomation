@@ -124,10 +124,22 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
             public void onClick(View view) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
 //                MemoryTest.getInstance(SplashActivity.this);
-                Test.save(SplashActivity.this);
+//                Test.save(SplashActivity.this);
+                
+//                CPUTest();
                 finish();
             }
         });
+    }
+
+    private void CPUTest() {
+        for (int i = 0; i < 100000 ; i++) {
+            Log.e(TAG, "CPUTest: " );
+            Log.e(TAG, "CPUTest: " );
+            Log.e(TAG, "CPUTest: " );
+            Log.e(TAG, "CPUTest: " );
+            Log.e(TAG, "CPUTest: " );
+        }
     }
 
 
