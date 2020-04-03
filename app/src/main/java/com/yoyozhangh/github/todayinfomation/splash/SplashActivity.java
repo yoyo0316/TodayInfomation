@@ -4,15 +4,16 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
-import com.yoyozhangh.github.todayinfomation.base.Test;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 import com.yoyozhangh.github.todayinfomation.main.MainActivity;
 
@@ -28,6 +29,10 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     @BindView(R.id.vv_play)
     FullScreenVideoView mVideoView;
+
+//    @BindView(R.id.splash_vs)
+//    ViewStub mViewStub;
+
     @BindView(R.id.skip)
     TextView mTVTimer;
     ISplashActivityContract.IPresenter mTimerPresenter;
@@ -125,7 +130,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
 //                MemoryTest.getInstance(SplashActivity.this);
 //                Test.save(SplashActivity.this);
-                
+
 //                CPUTest();
                 finish();
             }
@@ -133,18 +138,35 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     }
 
     private void CPUTest() {
-        for (int i = 0; i < 100000 ; i++) {
-            Log.e(TAG, "CPUTest: " );
-            Log.e(TAG, "CPUTest: " );
-            Log.e(TAG, "CPUTest: " );
-            Log.e(TAG, "CPUTest: " );
-            Log.e(TAG, "CPUTest: " );
+        for (int i = 0; i < 100000; i++) {
+            Log.e(TAG, "CPUTest: ");
+            Log.e(TAG, "CPUTest: ");
+            Log.e(TAG, "CPUTest: ");
+            Log.e(TAG, "CPUTest: ");
+            Log.e(TAG, "CPUTest: ");
         }
     }
 
 
     @Override
     public void setTvTimer(String s) {
-        mTVTimer.setText(s);
+//        if (TextUtils.equals(s, "跳过")) {
+//            View inflate = mViewStub.inflate();
+//
+//            inflate.setVisibility(View.VISIBLE);
+//
+//            inflate.findViewById(R.id.skip).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+////                MemoryTest.getInstance(SplashActivity.this);
+////                Test.save(SplashActivity.this);
+//
+////                CPUTest();
+//                    finish();
+//                }
+//            });
+//        }
+//        mTVTimer.setText(s);
     }
 }

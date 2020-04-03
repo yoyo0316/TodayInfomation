@@ -1,5 +1,8 @@
 
-1，内存优化
+性能优化  --- 内存优化 CPU卡顿优化  布局优化
+
+一、内存优化
+
 面试问题：你了解Java内存模型么（Java7、8、9内存模型的区别）
 https://www.jianshu.com/p/4455e4234d5c
 
@@ -31,11 +34,8 @@ adb start-server
 
 android studio 2.3 版本  Monitor --> memory --->Analyzer Task 分析内存泄漏
 
-
-
 2,MAT
 3,三方工具 leakcanary
-
 
 哪些操作可能造成长期的内存泄漏？
 
@@ -84,3 +84,17 @@ c, 比较大的容器，即使关闭界面也会造成短期内存问题，虽�
 13，多进程控制整个App的内存使用
 14，三方图片 加载框架在加载图片质量要求不高时，尽量不使用8888
 15，适当使用onTrimMemory 来 处理资源的释放。
+
+
+
+二、 CPU 卡顿优化
+采用 blockCanary 或者  Android studio 的 profile 中的 CPU 进行测试
+
+
+三、布局优化
+1，merge 标签的使用
+merge 标签可以减少一层布局 比如 两个 FrameLayout
+
+2，include
+
+3，viewStub 懒加载的过程
