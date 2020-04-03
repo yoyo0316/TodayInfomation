@@ -58,4 +58,12 @@ dependencies {
     implementation project(path: ':http')
     implementation project(path: ':task')
     implementation project(path: ':refresh')
+
+
+    // leakcanary 集成
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation"com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+//    testImpleamentation"com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+
 }

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
+import com.yoyozhangh.github.todayinfomation.base.Test;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
 import com.yoyozhangh.github.todayinfomation.main.MainActivity;
 
@@ -123,6 +124,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
             public void onClick(View view) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
 //                MemoryTest.getInstance(SplashActivity.this);
+                Test.save(SplashActivity.this);
                 finish();
             }
         });
