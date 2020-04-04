@@ -1,13 +1,13 @@
 package com.yoyozhangh.github.todayinfomation.splash;
 
-import com.yoyozhangh.github.annotation.MvpEmptyViewFactory;
+//import com.yoyozhangh.github.annotation.MvpEmptyViewFactory;
 import com.yoyozhangh.github.mvp.mvp.ILifeCircle;
 import com.yoyozhangh.github.mvp.mvp.IMvpView;
 
 public interface ISplashActivityContract {
 
 
-    @MvpEmptyViewFactory
+//    @MvpEmptyViewFactory
     interface Iview extends IMvpView {
         void setTvTimer(String timer);
     }

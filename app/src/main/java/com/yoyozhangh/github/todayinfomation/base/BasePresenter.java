@@ -1,6 +1,6 @@
 package com.yoyozhangh.github.todayinfomation.base;
 
-import com.yoyozhangh.github.annotation.MvpEmptyViewFactory;
+//import com.yoyozhangh.github.annotation.MvpEmptyViewFactory;
 import com.yoyozhangh.github.mvp.mvp.IMvpView;
 import com.yoyozhangh.github.mvp.mvp.base.BaseMvpPresenter;
 import com.yoyozhangh.github.task.LfTask;

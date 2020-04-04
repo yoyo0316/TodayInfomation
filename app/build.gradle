@@ -50,8 +50,8 @@ dependencies {
 
 
     // apt
-    implementation project(path: ':annotation')
-    annotationProcessor project(path: ':apt')
+//    implementation project(path: ':annotation')
+//    annotationProcessor project(path: ':apt')
 
     // module 的依赖引入
     implementation project(path: ':mvp')
