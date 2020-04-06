@@ -11,4 +11,11 @@
         android:src="@drawable/pic_shanghai"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
+
+    <TextView
+        android:text="子线程崩溃"
+        android:id="@+id/tv_crash"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 </LinearLayout>

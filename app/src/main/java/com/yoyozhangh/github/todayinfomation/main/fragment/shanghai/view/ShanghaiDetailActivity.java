@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -25,12 +26,8 @@ import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 @ViewInject(mainlayoutid = R.layout.activity_shanghai_detail)
@@ -43,6 +40,8 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     ImageView ivShanghaiDetail;
 
     public static String mActivityOptionsCompat = "ShanghaiDetailActivity";
+    @BindView(R.id.tv_crash)
+    TextView tvCrash;
 
     @Override
     public void afterBindView() {
@@ -50,6 +49,27 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
         initGetNetData();
 //        initPostNetData();
+
+        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = null;
+                s.toString();
+            }
+        });
+
+        tvCrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s = null;
+                        s.toString();
+                    }
+                }).start();
+            }
+        });
     }
 
     private void initPostNetData() {
@@ -59,7 +79,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
         // 创建之后  上传文件
 //        RequestBody mediaType = MultipartBody.create();
-        builder.add("key","d2d1bf028b2e0a775442ad39b12e9b13");
+        builder.add("key", "d2d1bf028b2e0a775442ad39b12e9b13");
 
         Request request = new Request.Builder()
                 .url("http://apis.juhe.cn/lottery/types")
@@ -102,7 +122,6 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         });
 
 
-
 //        GetXiaohuaTask task = new GetXiaohuaTask();
 //        task.execute("desc", "1", "2");
 
@@ -111,8 +130,6 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //            Response response = (Response) desc;
 //            Log.d("initGetNetData :", response.body().toString());
 //        }
-
-
 
 
 //        //1, 可以隔离
