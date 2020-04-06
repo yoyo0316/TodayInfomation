@@ -1,14 +1,13 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.yoyozhangh.github.todayinfomation.R;
+import com.yoyozhangh.github.todayinfomation.base.tools.AnimationUtil;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
-import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.adapter.ShanghaiAdapter;
-import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDataManager;
+import com.yoyozhangh.github.todayinfomation.base.tools.DoubleClickListener;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.adapter.ShanghaiAdapter2;
 
 import butterknife.BindView;
 
@@ -36,6 +36,9 @@ public class ShanghaiFragment extends BaseFragment {
 
     @BindView(R.id.shanghai_recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.tv_marquee_title)
+    TextView tvMarqueeTitle;
+    private boolean mIsPlaying;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +57,8 @@ public class ShanghaiFragment extends BaseFragment {
 //        for (int i = 0; i < 15; i++) {
 //            data.add("上海市欢迎您");
 //        }
-        mRecyclerView.setAdapter(new ShanghaiAdapter(getActivity(), ShanghaiDataManager.getData(),false));
+//        mRecyclerView.setAdapter(new ShanghaiAdapter(getActivity(), ShanghaiDataManager.getData(),false));
+        mRecyclerView.setAdapter(new ShanghaiAdapter2());
     }
 
     private void initListener() {
@@ -65,10 +69,39 @@ public class ShanghaiFragment extends BaseFragment {
 
                 if (-verticalOffset < appBarLayout.getMeasuredHeight() / 2) {
                     tvShanghaiWelcome.setVisibility(View.INVISIBLE);
+                    tvMarqueeTitle.setVisibility(View.INVISIBLE);
                 } else {
+
                     tvShanghaiWelcome.setVisibility(View.VISIBLE);
+                    if (mIsPlaying) {
+                        tvMarqueeTitle.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
+
+        tvShanghaiWelcome.setOnClickListener(new DoubleClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvShanghaiWelcome.clearAnimation();
+                tvMarqueeTitle.clearAnimation();
+                if (mIsPlaying) {
+                    // 关闭音视频的动画
+                    tvMarqueeTitle.setVisibility(View.GONE);
+                    AnimationUtil.startTranslationXAnima(tvShanghaiWelcome, tvShanghaiWelcome.getTranslationX(), tvShanghaiWelcome.getTranslationX() + 150, null);
+                    AnimationUtil.startTranslationXAnima(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(), tvMarqueeTitle.getTranslationX() + 150, null);
+                } else {
+                    // 播放音视频动画
+                    AnimationUtil.startTranslationXAnima(tvShanghaiWelcome, tvShanghaiWelcome.getTranslationX(), tvShanghaiWelcome.getTranslationX() - 150, null);
+                    AnimationUtil.startTranslationXAnima(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(), tvMarqueeTitle.getTranslationX() - 200, new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            tvMarqueeTitle.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    mIsPlaying = !mIsPlaying;
+                }
+            }
+        }));
     }
 }

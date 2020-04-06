@@ -37,6 +37,8 @@ dependencies {
 
     implementation "$support_group:appcompat-v7:$support_version"
     implementation "$support_group:design:$support_version"
+//    implementation "$support_group:cardview-v7:$support_version"
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     // butterknife 开源框架引用
     implementation 'com.jakewharton:butterknife:10.2.1'
@@ -64,6 +66,7 @@ dependencies {
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation"com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
+
 //    testImpleamentation"com.squareup.leakcanary:leakcanary-android-no-op:1.6.3"
 
 }
