@@ -15,17 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.yoyozhangh.github.todayinfomation.R;
-import com.yoyozhangh.github.todayinfomation.base.tools.AnimationUtil;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
+import com.yoyozhangh.github.todayinfomation.base.tools.AnimationUtil;
 import com.yoyozhangh.github.todayinfomation.base.tools.DoubleClickListener;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.If.IPlayServiceContract;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.adapter.ShanghaiAdapter2;
+import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.presenter.PlayServicePresenter;
 
 import butterknife.BindView;
 
 @ViewInject(mainlayoutid = R.layout.fragment_shanghai)
-public class ShanghaiFragment extends BaseFragment {
+public class ShanghaiFragment extends BaseFragment implements IPlayServiceContract.Iview {
     public static String TAG = "ShanghaiFragment";
+
+    IPlayServiceContract.IPresenter mPreseneter = new PlayServicePresenter(this);
 
     @BindView(R.id.tv_shanghai_welcome)
     TextView tvShanghaiWelcome;
@@ -97,6 +101,8 @@ public class ShanghaiFragment extends BaseFragment {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             tvMarqueeTitle.setVisibility(View.VISIBLE);
+                            // 启动Service 去播放后台音乐
+                            mPreseneter.bindService(mContext);
                         }
                     });
                     mIsPlaying = !mIsPlaying;
