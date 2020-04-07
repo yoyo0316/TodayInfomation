@@ -2,7 +2,7 @@ include ':app', ':player',
         ':mvp',
         ':http',
         ':task',
-        ':refresh'
-//        ':annotation',
-//        ':apt'
+        ':refresh',
+        ':annotation',
+        ':apt'
 rootProject.name='TodayInfomation'
