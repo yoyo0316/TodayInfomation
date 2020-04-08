@@ -13,6 +13,8 @@ public interface IPlayServiceContract {
 
     interface IPresenter extends ILifeCircle {
         void bindService(Context context);
+
+        void playOrPaused();
     }
 
 }

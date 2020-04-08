@@ -9,7 +9,7 @@ public class TodayInformationApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashProtectManager.getInstance(this).init();
+//        CrashProtectManager.getInstance(this).init();
 
         // 全局的Context 获取类
         ContextHelper.getInstance().init(this);

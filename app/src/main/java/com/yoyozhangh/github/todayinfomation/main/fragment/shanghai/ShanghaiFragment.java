@@ -94,10 +94,11 @@ public class ShanghaiFragment extends BaseFragment implements IPlayServiceContra
                     tvMarqueeTitle.setVisibility(View.GONE);
                     AnimationUtil.startTranslationXAnima(tvShanghaiWelcome, tvShanghaiWelcome.getTranslationX(), tvShanghaiWelcome.getTranslationX() + 150, null);
                     AnimationUtil.startTranslationXAnima(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(), tvMarqueeTitle.getTranslationX() + 150, null);
+                    mPreseneter.playOrPaused();
                 } else {
                     // 播放音视频动画
                     AnimationUtil.startTranslationXAnima(tvShanghaiWelcome, tvShanghaiWelcome.getTranslationX(), tvShanghaiWelcome.getTranslationX() - 150, null);
-                    AnimationUtil.startTranslationXAnima(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(), tvMarqueeTitle.getTranslationX() - 200, new AnimatorListenerAdapter() {
+                    AnimationUtil.startTranslationXAnima(tvMarqueeTitle, tvMarqueeTitle.getTranslationX(), tvMarqueeTitle.getTranslationX() - 150, new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             tvMarqueeTitle.setVisibility(View.VISIBLE);

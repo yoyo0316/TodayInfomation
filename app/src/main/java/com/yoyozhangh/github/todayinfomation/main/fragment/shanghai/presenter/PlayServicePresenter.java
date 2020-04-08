@@ -23,11 +23,7 @@ public class PlayServicePresenter extends BasePresenter<IPlayServiceContract.Ivi
             // IOC 数据回调 和 service 连接成功后调用
             PlayService.PlayBinder binder = (PlayService.PlayBinder) service;
             playService = binder.getService();
-
-            if (playService != null) {
-                //开启播放音乐
-                playService.playOrPause(new RawPlayerSource().setPath(ContextHelper.getInstance().getApplicationContext().getPackageName(), R.raw.shaonian));
-            }
+            playOrPaused();
         }
 
         @Override
@@ -47,9 +43,22 @@ public class PlayServicePresenter extends BasePresenter<IPlayServiceContract.Ivi
 
     @Override
     public void bindService(Context context) {
-        Intent intent = new Intent(context, PlayService.class);
+        if (playService != null) {
+            playOrPaused();
+        } else {
+            Intent intent = new Intent(context, PlayService.class);
 //        context.startService(intent);
-        context.bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
+            context.bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
+        }
 
+
+    }
+
+    @Override
+    public void playOrPaused() {
+        if (playService != null) {
+            //开启播放音乐
+            playService.playOrPause(new RawPlayerSource().setPath(ContextHelper.getInstance().getApplicationContext().getPackageName(), R.raw.shaonian), ContextHelper.getInstance().getApplicationContext());
+        }
     }
 }
