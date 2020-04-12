@@ -1,0 +1,45 @@
+
+Android 源码
+http://androidxref.com/
+
+
+MediaPlayer JNI 源码
+http://androidxref.com/9.0.0_r3/xref/frameworks/base/media/jni/android_media_MediaPlayer.cpp
+
+MediaPlayer架构
+java 调用 libmedia_jni.so  动态链接库  ---> 调用 libmedia.so 静态库 <--> libmediaplayerservice.so
+
+MediaPlayer 弊端
+兼容性、支持协议较少（如 Hls协议）
+
+升级版：ExoPlayer，ijkPlayer (FFmpeg)
+
+视频地址
+ http://cctvalih5ca.v.myalicdn.com/live/cctv1_2/index.m3u8
+
+安徽卫视 http://stream2.ahtv.cn/ahws/cd/live.m3u8
+经济生活 http://stream2.ahtv.cn/jjsh/cd/live.m3u8
+影视频道 http://stream2.ahtv.cn/yspd/fd/live.m3u8
+公共频道 http://stream2.ahtv.cn/ahgg/cd/live.m3u8
+综艺频道 http://stream2.ahtv.cn/zypd/cd/live.m3u8
+科教频道 http://stream2.ahtv.cn/kjpd/cd/live.m3u8
+人物频道 http://stream2.ahtv.cn/rwpd/cd/live.m3u8
+国际频道 http://stream2.ahtv.cn/ahgj/fd/live.m3u8
+
+
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:159984
+#EXT-X-TARGETDURATION:11
+#EXTINF:10.720,
+cctv1_2md/1586660860_3647092.ts
+#EXTINF:10.080,
+cctv1_2md/1586660870_3647093.ts
+#EXTINF:10.720,
+cctv1_2md/1586660881_3647094.ts
+#EXTINF:10.080,
+cctv1_2md/1586660891_3647095.ts
+#EXTINF:10.240,
+cctv1_2md/1586660902_3647096.ts
+
+

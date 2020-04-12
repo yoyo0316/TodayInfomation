@@ -2,6 +2,7 @@ package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,9 @@ import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.Shanghai
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.presenter.ShanghaiDetailPresenter;
 
 import java.io.IOException;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -42,9 +46,30 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     public static String mActivityOptionsCompat = "ShanghaiDetailActivity";
     @BindView(R.id.tv_crash)
     TextView tvCrash;
+    @BindView(R.id.GLSurfaceView)
+    android.opengl.GLSurfaceView glSurfaceView;
 
     @Override
     public void afterBindView() {
+
+        glSurfaceView.setRenderer(new GLSurfaceView.Renderer() {
+            @Override
+            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+                //都是子线程
+            }
+
+            @Override
+            public void onSurfaceChanged(GL10 gl, int width, int height) {
+
+            }
+
+            @Override
+            public void onDrawFrame(GL10 gl) {
+                // 循环调用 进行渲染
+//                gl.glClearColor();
+            }
+        });
+
         initAnima();
 
         initGetNetData();

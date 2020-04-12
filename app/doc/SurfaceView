@@ -1,0 +1,33 @@
+
+SurfaceView 家族体系
+
+GLSurfaceView
+
+VideoView
+
+SurfaceView的特点
+1，具有独立的绘图表面
+2，需要在宿主窗口上挖一个洞来显示自己
+3,它的UI绘制可以在单独的线程中进行，这样就可以进行负责的UI绘制
+并且不会影响应用程序的主线程响应用户输入
+
+
+Surface 的类型
+SURFACE_TYPE_NORMAL 用RAM缓存原生数据的普通Surface
+SURFACE_TYPE_HARDWARE 适用于DAM（Direct memory access ）引擎和硬件加速的Surface
+SURFACE_TYPE_GPU 适用于GPU加速的surface
+SURFACE_TYPE_PUSH_BUFFERS 表明surface不包含原生数据，surface用到的数据由
+其他对象提供，在 camera图像预览中使用该类型的surface 有camera负责提供给预览surface数据
+这样图像预览会比较流畅，如果设置这种类型则不能调用lockcanvas 来获取canvasd 对象了。
+
+canvas
+2D 图形渲染 skia 引擎：SkCanvas.cpp
+
+
+GLSurfaceView
+EGLSurface  和 OpenGL ES OpenGL ES (GLES)定义了用于EGL结合使用的图形渲染API，
+EGI 是一个规定如何通过操作系统创建和访问窗口的库（要绘制纹理多边形，请使用GLES，
+要渲染到屏幕上，请使用EGL调用）此页还介绍了ANativeWindow，它是javaSurface类的C/C++等价类，
+用于通过原生代码创建EGL 窗口表面。
+OpenGL 3D 渲染
+
