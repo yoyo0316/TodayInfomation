@@ -74,7 +74,6 @@ public class PlayService extends Service implements IPlayerListener {
         switch (mState) {
             case IDLE:
                 // 初始化播放器去播放
-                String url = playerSource.getUrl();
                 if (mPlayer != null) {
                     mPlayer.release();
                 }
@@ -91,8 +90,8 @@ public class PlayService extends Service implements IPlayerListener {
                 }
 
                 // 拿到播放器 去播放器
-                mPlayer.prepare(context, url);
                 mPlayer.setPlayingListener(this);
+                mPlayer.prepare(context, playerSource);
                 break;
             case STARTED:
                 // 去暂停

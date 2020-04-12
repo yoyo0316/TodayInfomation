@@ -106,8 +106,8 @@ public class ShanghaiFragment extends BaseFragment implements IPlayServiceContra
                             mPreseneter.bindService(mContext);
                         }
                     });
-                    mIsPlaying = !mIsPlaying;
                 }
+                mIsPlaying = !mIsPlaying;
             }
         }));
     }

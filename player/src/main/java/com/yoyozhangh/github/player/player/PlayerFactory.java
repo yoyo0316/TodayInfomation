@@ -18,8 +18,8 @@ public class PlayerFactory {
         switch (playType) {
             case IPlayType.MEDIAPLAYERTYPE:
                 return new GoogleMediaPlayer();
-            case 2:
-                break;
+            case IPlayType.MEDIAPLAYERTYPE_2:
+                return new ExoMediaPlayer(context);
             default:
                 break;
         }

@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 
+import com.yoyozhangh.github.player.source.IPlayerSource;
 import com.yoyozhangh.github.player.state.PlayerState;
 
 public class GoogleMediaPlayer implements IPlayer,
@@ -39,11 +40,11 @@ public class GoogleMediaPlayer implements IPlayer,
     }
 
     @Override
-    public void prepare(Context context, String url) {
+    public void prepare(Context context, IPlayerSource iPlayerSource) {
         //操作MediaPlayer
         // mediaPlayer 播放器系统资源 只能用Uri的方式
         try {
-            mMediaPlayer.setDataSource(context, Uri.parse(url));
+            mMediaPlayer.setDataSource(context, Uri.parse(iPlayerSource.getUrl()));
             mMediaPlayer.prepare();
         } catch (Exception e) {
             e.printStackTrace();
