@@ -20,7 +20,7 @@ public class BeijingFragment extends BaseFragment {
 
     @BindView(R.id.bt_play)
     Button tvClick;
-    ProcessDataReceiver processDataReceiver;
+//    ProcessDataReceiver processDataReceiver;
 
     @Override
     public void afterBindView() {
@@ -32,24 +32,25 @@ public class BeijingFragment extends BaseFragment {
                 ShanghaiDetailActivity.start_5_0(getActivity(), tvClick);
             }
         });
-        processDataReceiver = new ProcessDataReceiver();
-        getActivity().registerReceiver(processDataReceiver, new IntentFilter("shanghai_get_process_data"));
+
+//        processDataReceiver = new ProcessDataReceiver();
+//        getActivity().registerReceiver(processDataReceiver, new IntentFilter("shanghai_get_process_data"));
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(processDataReceiver);
+//        getActivity().unregisterReceiver(processDataReceiver);
     }
 
-    private class ProcessDataReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String processDec = ProcessDataTest.getInstance().getProcessDec();
-            Intent postIntent = new Intent("beijing_post_process_data");
-            postIntent.putExtra("processDec", processDec);
-            getActivity().sendBroadcast(postIntent);
-        }
-    }
+//    private class ProcessDataReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String processDec = ProcessDataTest.getInstance().getProcessDec();
+//            Intent postIntent = new Intent("beijing_post_process_data");
+//            postIntent.putExtra("processDec", processDec);
+//            getActivity().sendBroadcast(postIntent);
+//        }
+//    }
 }

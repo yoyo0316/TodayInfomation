@@ -1,10 +1,9 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.content.ContentValues;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
@@ -52,7 +50,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     TextView tvCrash;
     @BindView(R.id.GLSurfaceView)
     android.opengl.GLSurfaceView glSurfaceView;
-    GetProcessReceiver getProcessReceiver;
+//    GetProcessReceiver getProcessReceiver;
 
     @Override
     public void afterBindView() {
@@ -76,11 +74,11 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         });
 
         initAnima();
-        initReceiver();
+//        initReceiver();
         initProcessData();
         initGetNetData();
 //        initPostNetData();
-
+        initProviderData();
         ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,11 +101,16 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         });
     }
 
-    private void initReceiver() {
-        getProcessReceiver = new GetProcessReceiver();
-
-        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+    private void initProviderData() {
+        Uri insert = getContentResolver().insert(Uri.parse("content://com.yoyozhangh.github.todayinfomation.process.data"), new ContentValues());
+        Log.e("ShanghaiDetailActivity", "initProviderData:processDec " + insert.toString());
     }
+
+//    private void initReceiver() {
+//        getProcessReceiver = new GetProcessReceiver();
+//
+//        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+//    }
 
     private void initProcessData() {
 //        String processDec = ProcessDataTest.getInstance().getProcessDec();
@@ -267,15 +270,15 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(getProcessReceiver);
+//        unregisterReceiver(getProcessReceiver);
     }
 
-    private class GetProcessReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String processDec = intent.getStringExtra("processDec");
-            Log.e("GetProcessReceiver", "onReceive: processDec=" + processDec);
-        }
-    }
+//    private class GetProcessReceiver extends BroadcastReceiver {
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String processDec = intent.getStringExtra("processDec");
+//            Log.e("GetProcessReceiver", "onReceive: processDec=" + processDec);
+//        }
+//    }
 }
