@@ -1,7 +1,10 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
@@ -48,6 +52,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     TextView tvCrash;
     @BindView(R.id.GLSurfaceView)
     android.opengl.GLSurfaceView glSurfaceView;
+    GetProcessReceiver getProcessReceiver;
 
     @Override
     public void afterBindView() {
@@ -71,7 +76,8 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         });
 
         initAnima();
-
+        initReceiver();
+        initProcessData();
         initGetNetData();
 //        initPostNetData();
 
@@ -95,6 +101,23 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
                 }).start();
             }
         });
+    }
+
+    private void initReceiver() {
+        getProcessReceiver = new GetProcessReceiver();
+
+        registerReceiver(getProcessReceiver, new IntentFilter("beijing_post_process_data"));
+    }
+
+    private void initProcessData() {
+//        String processDec = ProcessDataTest.getInstance().getProcessDec();
+//        Log.e("ShanghaiDetailActivity", "initProcessData: processDec=" + processDec);
+        Intent intent = new Intent("shanghai_get_process_data");
+        sendBroadcast(intent);
+
+////         应用内广播
+//        LocalBroadcastManager.getInstance().registerReceiver();
+//        LocalBroadcastManager.getInstance().unregisterReceiver();
     }
 
     private void initPostNetData() {
@@ -238,5 +261,21 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     @Override
     public void showData(ShanghaiDetailBean detailBean) {
 
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(getProcessReceiver);
+    }
+
+    private class GetProcessReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String processDec = intent.getStringExtra("processDec");
+            Log.e("GetProcessReceiver", "onReceive: processDec=" + processDec);
+        }
     }
 }

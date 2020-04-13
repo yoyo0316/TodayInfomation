@@ -1,0 +1,27 @@
+
+进程
+进程四要素：
+有一段程序供其执行
+拥有专用的系统堆栈空间
+在内核存在对应进程控制块
+拥有独立的用户存储空间
+
+adb shell dumpsys meminfo  打印当前手机进程的所有信息
+
+进程间数据共享
+1，广播
+广播的类型
+普通广播 Normal Broadcast
+系统广播 System Broadcast
+有序广播 Ordered Broadcast
+App应用内广播 Local Broadcast
+
+2,内容提供者
+自定义URI =  content://com.carson.provider/User/1
+
+ content:// 主题名 （Schema） ContentProvider 的 URI前缀 （Android规定）
+ com.carson.provider 授权信息(Authority) ContentProvider 的唯一标识符
+ User 表名 （Path）ContentProvider 指向数据库中的某个表名
+ /1 记录（ID）表中的某个记录（若无指定，则返回全部记录）
+
+
