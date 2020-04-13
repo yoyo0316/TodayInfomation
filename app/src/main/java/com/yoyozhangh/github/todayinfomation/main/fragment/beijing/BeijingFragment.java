@@ -1,10 +1,7 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.beijing;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,10 +17,14 @@ public class BeijingFragment extends BaseFragment {
 
     @BindView(R.id.bt_play)
     Button tvClick;
-//    ProcessDataReceiver processDataReceiver;
+    //    ProcessDataReceiver processDataReceiver;
+    Intent service;
 
     @Override
     public void afterBindView() {
+        service =new Intent(mContext, MainProcessService.class);
+        mContext.startService(service);
+
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +41,7 @@ public class BeijingFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mContext.stopService(service);
 //        getActivity().unregisterReceiver(processDataReceiver);
     }
 

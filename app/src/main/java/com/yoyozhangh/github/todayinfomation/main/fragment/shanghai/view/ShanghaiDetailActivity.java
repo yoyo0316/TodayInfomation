@@ -1,12 +1,17 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view;
 
 import android.app.Activity;
-import android.content.ContentValues;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
-import android.net.Uri;
-import android.opengl.GLSurfaceView;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,14 +24,12 @@ import androidx.core.util.Pair;
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
+import com.yoyozhangh.github.todayinfomation.main.fragment.beijing.MainProcessService;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.If.IShanghaiDetailContract;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDetailBean;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.presenter.ShanghaiDetailPresenter;
 
 import java.io.IOException;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -52,59 +55,99 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     android.opengl.GLSurfaceView glSurfaceView;
 //    GetProcessReceiver getProcessReceiver;
 
+    private Messenger messenger;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Bundle data = msg.getData();
+            String processDec = data.getString("processDec");
+            Log.e("ShanghaiDetailActivity", "handleMessage: processDec=" + processDec);
+        }
+    };
+    private Messenger messengerClient = new Messenger(handler);
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            messenger = new Messenger(service);
+            Message message = new Message();
+            message.what = MainProcessService.SHANGHAIDETAIL;
+            message.replyTo = messengerClient;
+            try {
+                messenger.send(message);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
     @Override
     public void afterBindView() {
 
-        glSurfaceView.setRenderer(new GLSurfaceView.Renderer() {
-            @Override
-            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                //都是子线程
-            }
-
-            @Override
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-
-            }
-
-            @Override
-            public void onDrawFrame(GL10 gl) {
-                // 循环调用 进行渲染
-//                gl.glClearColor();
-            }
-        });
+//        glSurfaceView.setRenderer(new GLSurfaceView.Renderer() {
+//            @Override
+//            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+//                //都是子线程
+//            }
+//
+//            @Override
+//            public void onSurfaceChanged(GL10 gl, int width, int height) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawFrame(GL10 gl) {
+//                // 循环调用 进行渲染
+////                gl.glClearColor();
+//            }
+//        });
 
         initAnima();
 //        initReceiver();
-        initProcessData();
+//        initProcessData();
         initGetNetData();
 //        initPostNetData();
-        initProviderData();
-        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String s = null;
-                s.toString();
-            }
-        });
+//        initProviderData();
 
-        tvCrash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String s = null;
-                        s.toString();
-                    }
-                }).start();
-            }
-        });
+        initProcessService();
+//        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String s = null;
+//                s.toString();
+//            }
+//        });
+//
+//        tvCrash.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        String s = null;
+//                        s.toString();
+//                    }
+//                }).start();
+//            }
+//        });
     }
 
-    private void initProviderData() {
-        Uri insert = getContentResolver().insert(Uri.parse("content://com.yoyozhangh.github.todayinfomation.process.data"), new ContentValues());
-        Log.e("ShanghaiDetailActivity", "initProviderData:processDec " + insert.toString());
+    private void initProcessService() {
+        Intent intent = new Intent(this, MainProcessService.class);
+        bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
     }
+
+//    private void initProviderData() {
+//        Uri insert = getContentResolver().insert(Uri.parse("content://com.yoyozhangh.github.todayinfomation.process.data"), new ContentValues());
+//        Log.e("ShanghaiDetailActivity", "initProviderData:processDec " + insert.toString());
+//    }
 
 //    private void initReceiver() {
 //        getProcessReceiver = new GetProcessReceiver();
@@ -115,8 +158,8 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     private void initProcessData() {
 //        String processDec = ProcessDataTest.getInstance().getProcessDec();
 //        Log.e("ShanghaiDetailActivity", "initProcessData: processDec=" + processDec);
-        Intent intent = new Intent("shanghai_get_process_data");
-        sendBroadcast(intent);
+//        Intent intent = new Intent("shanghai_get_process_data");
+//        sendBroadcast(intent);
 
 ////         应用内广播
 //        LocalBroadcastManager.getInstance().registerReceiver();

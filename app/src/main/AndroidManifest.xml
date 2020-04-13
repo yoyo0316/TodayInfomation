@@ -31,6 +31,8 @@
         <provider
             android:authorities="com.yoyozhangh.github.todayinfomation.process.data"
             android:name=".main.fragment.beijing.MainProcessDataProvider"/>
+
+        <service android:name=".main.fragment.beijing.MainProcessService"/>
         <!--播放器配置信息 -->
         <meta-data android:name="playertype"
             android:value="2" />
