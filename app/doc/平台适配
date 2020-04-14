@@ -7,3 +7,32 @@ https://developer.android.google.cn/about/versions/marshmallow/android-6.0-chang
 
 Android 6.0 运行时权限处理完全解析
 https://blog.csdn.net/lmj623565791/article/details/50709663
+
+
+android 7.0
+https://developer.android.google.cn/about/versions/nougat/android-7.0-changes
+
+Android 7.0 移除了三项隐式广播，以帮助优化内存使用和电量消耗。此项变更很有必要，因为隐式广播会在后台
+频繁启动已注册侦听这些广播的应用。删除这些广播可以显著提升设备性能和用户体验。
+
+移动设备会经历频繁的连接变更，例如在 WLAN 和移动数据之间切换时。目前，可以通过在应用清单中注册一个
+接收器来侦听隐式 CONNECTIVITY_ACTION 广播，让应用能够监控这些变更。由于很多应用会注册接收此广播，
+因此单次网络切换即会导致所有应用被唤醒并同时处理此广播。
+
+同理，在之前版本的 Android 中，应用可以注册接收来自其他应用（例如相机）的隐式 ACTION_NEW_PICTURE 和
+ ACTION_NEW_VIDEO 广播。当用户使用相机应用拍摄照片时，这些应用即会被唤醒以处理广播。
+
+ 为缓解这些问题，Android 7.0 应用了以下优化措施：
+
+ 面向 Android 7.0 开发的应用不会收到 CONNECTIVITY_ACTION 广播，即使它们已有清单条目来请求接受这些事
+ 件的通知。在前台运行的应用如果使用 BroadcastReceiver 请求接收通知，则仍可以在主线程中侦听 CONNECTIVITY_CHANGE。
+ 应用无法发送或接收 ACTION_NEW_PICTURE 或 ACTION_NEW_VIDEO 广播。此项优化会影响所有应用，而不仅仅是面向 Android 7.0 的应用。
+ 如果您的应用使用任何 intent，您仍需要尽快移除它们的依赖关系，以正确适配 Android 7.0 设备。Android
+ 框架提供多个解决方案来缓解对这些隐式广播的需求。例如，JobScheduler API 提供了一个稳健可靠的机制来安
+ 排满足指定条件（例如连入无限流量网络）时所执行的网络操作。您甚至可以使用 JobScheduler 来适应内容提供程序变化
+
+ Android7.0适配总结
+ https://blog.csdn.net/namehybin/article/details/78571964
+
+ Android适配-Android 7.0 适配方案
+ https://www.jianshu.com/p/0e8b3b7662ef
