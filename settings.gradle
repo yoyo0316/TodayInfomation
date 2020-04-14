@@ -1,4 +1,4 @@
-include ':app', ':player',
+include ':app', ':player', ':ipc',
         ':mvp',
         ':http',
         ':task',

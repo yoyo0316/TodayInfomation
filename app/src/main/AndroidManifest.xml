@@ -33,6 +33,7 @@
             android:name=".main.fragment.beijing.MainProcessDataProvider"/>
 
         <service android:name=".main.fragment.beijing.MainProcessService"/>
+        <service android:name="com.yoyozhangh.github.ipc.server.IpcService"/>
         <!--播放器配置信息 -->
         <meta-data android:name="playertype"
             android:value="2" />

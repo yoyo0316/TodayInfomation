@@ -61,6 +61,7 @@ dependencies {
     implementation project(path: ':task')
     implementation project(path: ':refresh')
     implementation project(path: ':player')
+    implementation project(path: ':ipc')
 //    implementation "com.github.yoyo0316:GodRefresh:v1.0.0"
 
     // leakcanary 集成

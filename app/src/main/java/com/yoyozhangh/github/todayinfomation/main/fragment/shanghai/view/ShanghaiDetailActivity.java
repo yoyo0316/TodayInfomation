@@ -1,17 +1,9 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.view;
 
 import android.app.Activity;
-import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,10 +13,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
+import com.yoyozhangh.github.ipc.CallBack;
+import com.yoyozhangh.github.ipc.IpcManager;
+import com.yoyozhangh.github.ipc.request.IpcRequest;
+import com.yoyozhangh.github.ipc.result.IResult;
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseActivity;
 import com.yoyozhangh.github.todayinfomation.base.ViewInject;
-import com.yoyozhangh.github.todayinfomation.main.fragment.beijing.MainProcessService;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.If.IShanghaiDetailContract;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.dto.ShanghaiDetailBean;
 import com.yoyozhangh.github.todayinfomation.main.fragment.shanghai.presenter.ShanghaiDetailPresenter;
@@ -54,39 +49,39 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     @BindView(R.id.GLSurfaceView)
     android.opengl.GLSurfaceView glSurfaceView;
 //    GetProcessReceiver getProcessReceiver;
+//
+//    private Messenger messenger;
+//
+//    private Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            Bundle data = msg.getData();
+//            String processDec = data.getString("processDec");
+//            Log.e("ShanghaiDetailActivity", "handleMessage: processDec=" + processDec);
+//        }
+//    };
+//    private Messenger messengerClient = new Messenger(handler);
 
-    private Messenger messenger;
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle data = msg.getData();
-            String processDec = data.getString("processDec");
-            Log.e("ShanghaiDetailActivity", "handleMessage: processDec=" + processDec);
-        }
-    };
-    private Messenger messengerClient = new Messenger(handler);
-
-    private ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            messenger = new Messenger(service);
-            Message message = new Message();
-            message.what = MainProcessService.SHANGHAIDETAIL;
-            message.replyTo = messengerClient;
-            try {
-                messenger.send(message);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
+//    private ServiceConnection mConnection = new ServiceConnection() {
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            messenger = new Messenger(service);
+//            Message message = new Message();
+//            message.what = MainProcessService.SHANGHAIDETAIL;
+//            message.replyTo = messengerClient;
+//            try {
+//                messenger.send(message);
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//
+//        }
+//    };
 
     @Override
     public void afterBindView() {
@@ -116,7 +111,9 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //        initPostNetData();
 //        initProviderData();
 
-        initProcessService();
+//        initProcessService();
+
+        initIPC();
 //        ivShanghaiDetail.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -139,10 +136,23 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //        });
     }
 
-    private void initProcessService() {
-        Intent intent = new Intent(this, MainProcessService.class);
-        bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
+    private void initIPC() {
+        IpcRequest request = new IpcRequest("shanghaiDetail");
+        IpcManager.getInstance(this).excuteAsync(request, new CallBack() {
+            @Override
+            public void callBack(IResult result) {
+                String data = result.data();
+                Log.d("yyz", "数据请求 initIPC : data=" + data);
+            }
+        });
+//        IResult result = IpcManager.getInstance(this).excuteSync(request);
+//        Log.e("yyz", "数据请求 initIPC: data=" + result.data());
     }
+
+//    private void initProcessService() {
+//        Intent intent = new Intent(this, MainProcessService.class);
+//        bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
+//    }
 
 //    private void initProviderData() {
 //        Uri insert = getContentResolver().insert(Uri.parse("content://com.yoyozhangh.github.todayinfomation.process.data"), new ContentValues());
