@@ -1,7 +1,11 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.beijing;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -10,6 +14,9 @@ import android.os.Messenger;
 import android.os.RemoteException;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
+import com.yoyozhangh.github.todayinfomation.R;
 
 public class MainProcessService extends Service {
 
@@ -45,5 +52,25 @@ public class MainProcessService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return messenger.getBinder();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // 前台服务，可以显示通知栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            NotificationChannel channel = new NotificationChannel("mainProcess","test",NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(channel);
+
+            Notification notification = new NotificationCompat.Builder(this,"mainProcess")
+                    .setContentTitle("标题")
+                    .setContentText("内容")
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .build();
+            startForeground(1, notification);
+        }
+
     }
 }

@@ -36,3 +36,26 @@ Android 7.0 移除了三项隐式广播，以帮助优化内存使用和电量�
 
  Android适配-Android 7.0 适配方案
  https://www.jianshu.com/p/0e8b3b7662ef
+
+
+ android 8.0
+ https://developer.android.google.cn/about/versions/oreo/android-8.0-changes
+
+Android 8.0 为提高电池续航时间而引入的变更之一是，当您的应用进入已缓存状态时，如果没有活动的组件，
+系统将解除应用具有的所有唤醒锁。
+
+此外，为提高设备性能，系统会限制未在前台运行的应用的某些行为。具体而言：
+
+现在，在后台运行的应用对后台服务的访问受到限制。
+应用无法使用其清单注册大部分隐式广播（即，并非专门针对此应用的广播）。
+默认情况下，这些限制仅适用于针对 O 的应用。不过，用户可以从 Settings 屏幕为任意应用启用这些限制，
+即使应用并不是以 O 为目标平台。
+
+Android 8.0 还对特定函数做出了以下变更：
+1，支持自适应图标
+2，后台服务限制
+
+如果针对 Android 8.0 的应用尝试在不允许其创建后台服务的情况下使用 startService() 函数，则该函数将引
+发一个 IllegalStateException。
+新的 Context.startForegroundService() 函数将启动一个前台服务。现在，即使应用在后台运行，系统也允许其调
+用 Context.startForegroundService()。不过，应用必须在创建服务后的五秒内调用该服务的 startForeground() 函数。

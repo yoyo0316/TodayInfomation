@@ -32,7 +32,13 @@ public class BeijingFragment extends BaseFragment {
     @Override
     public void afterBindView() {
         service = new Intent(mContext, MainProcessService.class);
-        mContext.startService(service);
+
+        // android 8.0 平台适配
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            mContext.startForegroundService(service);
+        }else {
+            mContext.startService(service);
+        }
 
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
