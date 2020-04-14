@@ -1,9 +1,15 @@
 package com.yoyozhangh.github.todayinfomation.main.fragment.beijing;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 
 import com.yoyozhangh.github.todayinfomation.R;
 import com.yoyozhangh.github.todayinfomation.base.BaseFragment;
@@ -20,9 +26,12 @@ public class BeijingFragment extends BaseFragment {
     //    ProcessDataReceiver processDataReceiver;
     Intent service;
 
+    @BindView(R.id.bt_permision)
+    Button tvPermisionClick;
+
     @Override
     public void afterBindView() {
-        service =new Intent(mContext, MainProcessService.class);
+        service = new Intent(mContext, MainProcessService.class);
         mContext.startService(service);
 
         tvClick.setOnClickListener(new View.OnClickListener() {
@@ -34,8 +43,31 @@ public class BeijingFragment extends BaseFragment {
             }
         });
 
+
+        tvPermisionClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    int state = getContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    if (state == PackageManager.PERMISSION_GRANTED) {
+                        Log.d("BeijingFragment", "权限已经申请");
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        Log.d("BeijingFragment", "权限没有申请");
+                    }
+                }
+            }
+        });
+
 //        processDataReceiver = new ProcessDataReceiver();
 //        getActivity().registerReceiver(processDataReceiver, new IntentFilter("shanghai_get_process_data"));
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d("BeijingFragment", "onRequestPermissionsResult: grantResults =" + grantResults[0]);
     }
 
     @Override
