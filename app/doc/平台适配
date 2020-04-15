@@ -59,3 +59,11 @@ Android 8.0 还对特定函数做出了以下变更：
 发一个 IllegalStateException。
 新的 Context.startForegroundService() 函数将启动一个前台服务。现在，即使应用在后台运行，系统也允许其调
 用 Context.startForegroundService()。不过，应用必须在创建服务后的五秒内调用该服务的 startForeground() 函数。
+
+Android9.0
+参考文档 Android客户端适配9.0方案.docx
+
+Android10.0
+https://developer.android.google.cn/about/versions/10/privacy/changes
+
+MediaStore  文件 访问权限
