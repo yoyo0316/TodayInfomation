@@ -67,3 +67,10 @@ Android10.0
 https://developer.android.google.cn/about/versions/10/privacy/changes
 
 MediaStore  文件 访问权限
+
+
+AndroidX
+https://developer.android.google.cn/jetpack/androidx
+
+如何迁移到AndroidX？
+https://developer.android.google.cn/jetpack/androidx/migrate
